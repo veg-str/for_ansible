@@ -1,7 +1,9 @@
 import os, openpyxl, ipaddr, yaml
 
-ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v035.xlsx'
+#ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
+ip_plan = 'project_files\\Tele2_IP_plan_v035.xlsx'
+dirpath = os.path.dirname(__file__)
+filepath = os.path.normpath(os.path.join(dirpath, ip_plan))
 inventory_dir = 'c:\\temp\\inventory\\'
 # inventory_file = 't2_tms_inventory'
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
@@ -12,7 +14,7 @@ epsm_host = 'kvm10.'
 os.chdir(inventory_dir)
 
 # Open Excel file in read-only mode
-wb = openpyxl.load_workbook(ip_plan_dir + ip_plan, True)
+wb = openpyxl.load_workbook(filepath, True)
 
 print(wb.sheetnames)
 
