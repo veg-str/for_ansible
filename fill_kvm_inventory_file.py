@@ -1,12 +1,13 @@
 import os, openpyxl, ipaddr, yaml
 
 ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v032.xlsx'
+ip_plan = 'Tele2_IP_plan_v035.xlsx'
 inventory_dir = 'c:\\temp\\inventory\\'
 # inventory_file = 't2_tms_inventory'
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 kvm_keys = ['hostname', 'ansible_host', 'vm_name']
-epsm_host = 'kvm11.'
+srv_types = ['pre', 'psm', 'pic', 'epsm', 'rb', 'log']
+epsm_host = 'kvm10.'
 
 os.chdir(inventory_dir)
 
@@ -18,10 +19,13 @@ print(wb.sheetnames)
 
 def vm_names(region, srv):
     ws = wb[region]
+    vm_name = ''
+    excluded_vm_names = ['epsm', 'log', 'rb', 'rs']
     for row in ws.iter_rows():
-        if srv == row[0].value and 'epsm' not in str(row[1].value) and 'log' not in str(row[1].value) and row[3].value == 'vm-Mgmt':
+        if srv == row[0].value and str(row[1].value)[:-20] not in excluded_vm_names and row[3].value == 'vm-Mgmt':
+#        if srv == row[0].value and 'epsm' not in str(row[1].value) and 'log' not in str(row[1].value) and row[3].value == 'vm-Mgmt':
 #        if srv == row[0].value and ('pre' or 'psm' or 'pic') in str(row[1].value) and row[3].value == 'vm-Mgmt':
-            vm_name = str(row[1].value)[:-14]
+            vm_name = str(row[1].value)[:-18]
     return vm_name
 
 
@@ -64,16 +68,21 @@ def epsm_list(region, site):
     srv_list = []
     for row in ws.iter_rows():
         if row[3].value == 'vm-Mgmt' and 'epsm' in row[1].value and row[6].value == site:
-            srv_list.append({str(row[1].value)[:-13]: row[5].value})
+            srv_list.append({str(row[1].value)[:-18]: row[5].value})
     return srv_list
 
 
-def rb_list(srv_list):
-    rb_list = []
-    for srv in srv_list:
-        if 'rb' in srv[kvm_keys[2]]:
-            rb_list.append(srv)
-    return rb_list
+def rb_list(region, site):
+    ws = wb[region]
+    srv_list = []
+    for row in ws.iter_rows():
+        if row[3].value == 'vm-Mgmt' and 'rb' in row[1].value and row[6].value == site:
+            srv_list.append({str(row[1].value)[:-18]: row[5].value})
+    return srv_list
+
+
+#def kvm_bottom_groups(region):
+
 
 
 def kvm_groups(region):
@@ -112,17 +121,18 @@ def global_groups():
         psm.append('kvm_' + region.lower() + '_psm')
         epsm.append('kvm_' + region.lower() + '_epsm')
         rb.append('kvm_' + region.lower() + '_rb')
+#        log.append('kvm_' + region.lower() + '_log')
     global_gr.append({'name': '[pre:children]', 'members': pre})
     global_gr.append({'name': '[pic:children]', 'members': pic})
     global_gr.append({'name': '[psm:children]', 'members': psm})
     global_gr.append({'name': '[epsm:children]', 'members': epsm})
     global_gr.append({'name': '[rb:children]', 'members': rb})
+#    global_gr.append({'name': '[log:children]', 'members': log})
     return global_gr
-
 
 # Create file with KVMs
 inventory_file = 'kvm'
-with open(inventory_file, 'w') as f:
+with open(inventory_file, 'w', newline='\n') as f:
     f.write('# List os KVMs\n\n')
     for item in mr:
         print('Collecting data about KVM in ' + item)
@@ -141,8 +151,8 @@ with open(inventory_file, 'w') as f:
             f.write(kvm[kvm_keys[0]][:-13] + ' ansible_host=' + kvm[kvm_keys[1]] + '\n')
         f.write('\n')
         f.write('[kvm_' + item.lower() + '1_rb]\n')
-        for kvm in rb_list(site):
-            f.write(kvm[kvm_keys[0]][:-13] + ' ansible_host=' + kvm[kvm_keys[1]] + '\n')
+#        for kvm in rb_list(item, 'Site1'):
+#            f.write(kvm[kvm_keys[0]][:-13] + '\n')
         f.write('\n')
         f.write('[kvm_' + item.lower() + '1_epsm]\n')
         f.write(epsm_host + item.lower() + '1\n\n')
@@ -160,8 +170,8 @@ with open(inventory_file, 'w') as f:
             f.write(kvm[kvm_keys[0]][:-13] + ' ansible_host=' + kvm[kvm_keys[1]] + '\n')
         f.write('\n')
         f.write('[kvm_' + item.lower() + '2_rb]\n')
-        for kvm in rb_list(site):
-            f.write(kvm[kvm_keys[0]][:-13] + ' ansible_host=' + kvm[kvm_keys[1]] + '\n')
+#        for kvm in rb_list(item, 'Site2'):
+#            f.write(kvm[kvm_keys[0]][:-18] + '\n')
         f.write('\n')
         f.write('[kvm_' + item.lower() + '2_epsm]\n')
         f.write(epsm_host + item.lower() + '2\n\n')

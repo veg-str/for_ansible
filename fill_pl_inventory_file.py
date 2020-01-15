@@ -1,7 +1,7 @@
 import os, openpyxl
 
 ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v031.xlsx'
+ip_plan = 'Tele2_IP_plan_v035.xlsx'
 inventory_dir = 'c:\\temp\\inventory\\'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
@@ -86,7 +86,7 @@ def global_groups():
 
 # Create file with PacketLogic VMs
 inventory_file = 'packetlogick'
-with open(inventory_file, 'w') as f:
+with open(inventory_file, 'w', newline='\n') as f:
     f.write('# List os PacketLogic VMs\n\n')
     for item in mr:
         print('Collecting data about VM in ' + item)

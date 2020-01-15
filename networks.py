@@ -1,7 +1,7 @@
 import os, openpyxl, yaml
 
 ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v032.xlsx'
+ip_plan = 'Tele2_IP_plan_v035.xlsx'
 wb = openpyxl.load_workbook(ip_plan_dir + ip_plan, True)
 inventory_dir = 'c:\\temp\\inventory\\'
 vars_file = 'networks.yml'
@@ -39,6 +39,6 @@ subnets['networks'] = reg
 print(subnets)
 
 
-with open(inventory_dir + vars_file, 'w') as f:
+with open(inventory_dir + vars_file, 'w', newline='\n') as f:
     f.write(yaml.dump(subnets))
 #print(yaml.dump(subnets))

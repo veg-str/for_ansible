@@ -1,8 +1,9 @@
 import os, openpyxl, yaml
 
 ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v031.xlsx'
+ip_plan = 'Tele2_IP_plan_v035.xlsx'
 vars_dir = 'c:\\temp\\group_vars\\'
+quorum = '2'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 
@@ -29,17 +30,39 @@ def psm_vars(mr, psm):
             vars[row[3].value] = row[5].value
     ha['cluster_id'] = psm[4]
     for row in ws.iter_rows():
-        if row[1].value == psm[:-10] + ' (VRRP VIP)':
+        if row[1].value == psm[:-14] + ' (VRRP VIP)':
             ha[row[3].value + '_vip'] = row[5].value
     vars['ha'] = ha
-    psm_vars = {psm[:-9]: vars}
+    psm_vars = {psm[:-13]: vars}
     return psm_vars
+
 
 for item in mr:
     psms = psm_list(item)
-    print(psms)
+#    print(psms)
     for psm in psms:
         vars = psm_vars(item, psm)
+#        print(vars)
+        var_file = psm + '.yml'
+        with open(var_file, 'w', newline='\n') as f:
+            f.write('# Variables for ' + psm + '\n#\n')
+            f.write('# High availability related vars\n#\n')
+            f.write('ha:\n')
+            f.write('  cluster_id: ' + vars[psm[:-13]]['ha']['cluster_id'] + '\n')
+            f.write('  quorum: ' + quorum + '\n')
+            f.write('  elector: ' + '\n')
+            f.write('  vip:\n')
+            f.write('    gx_vip: ' + vars[psm[:-13]]['ha']['Gx_vip'] + '\n')
+            f.write('    gy_vip: ' + vars[psm[:-13]]['ha']['Gy_vip'] + '\n')
+            f.write('    aaa_vip: ' + vars[psm[:-13]]['ha']['Radius_vip'] + '\n')
+            f.write('    res_vip: ' + vars[psm[:-13]]['ha']['Resource_vip'] + '\n')
+            f.write('#\n' + '# NICs related vars\n#\n')
+            f.write('gx_ip: ' + vars[psm[:-13]]['Gx'] + '\n')
+            f.write('gy_ip: ' + vars[psm[:-13]]['Gy'] + '\n')
+            f.write('aaa_ip: ' + vars[psm[:-13]]['Radius'] + '\n')
+            f.write('res_ip: ' + vars[psm[:-13]]['Resource'] + '\n')
+            f.write('provisioning_ip: ' + vars[psm[:-13]]['Provisioning'] + '\n')
+            f.write('cluster_sync_ip: ' + vars[psm[:-13]]['ClusterSync'])
         print(vars)
 
 print(yaml.dump(vars[list(vars.keys())[0]]))
