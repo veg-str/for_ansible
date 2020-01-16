@@ -21,13 +21,13 @@ print(wb.sheetnames)
 
 def vm_names(region, srv):
     ws = wb[region]
-    vm_name = ''
+    vm_name = []
     excluded_vm_names = ['epsm', 'log', 'rb', 'rs']
     for row in ws.iter_rows():
-        if srv == row[0].value and str(row[1].value)[:-20] not in excluded_vm_names and row[3].value == 'vm-Mgmt':
+        if srv == row[0].value and row[3].value == 'vm-Mgmt':
 #        if srv == row[0].value and 'epsm' not in str(row[1].value) and 'log' not in str(row[1].value) and row[3].value == 'vm-Mgmt':
 #        if srv == row[0].value and ('pre' or 'psm' or 'pic') in str(row[1].value) and row[3].value == 'vm-Mgmt':
-            vm_name = str(row[1].value)[:-18]
+            vm_name.append(row[1].value[:-18])
     return vm_name
 
 
