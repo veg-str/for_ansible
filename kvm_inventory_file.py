@@ -39,7 +39,6 @@ def vm_names(srv):
     for row in srv_list:
         if row['hostname'] == srv and row['vlan'] == 'vm-Mgmt':
             vm_name.append(row['vm'][:-18])
-    vm_name = '\"' + str(vm_name) + '\"'
     return vm_name
 
 
@@ -63,14 +62,15 @@ with open(inventory_file, 'w', newline='\n') as f:
                 f.write('[kvm_' + region.lower() + i + '_' + srv_type + ']\n')
                 for row in srv_list:
                     vm = vm_names(row['hostname'])
-                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and re.search("(^|')" + srv_type, vm):
-                        f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip'] + ' vm_name=' + vm + '\n')
+                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, vm[0]):
+                        f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip'] +
+                                ' vm_name=' + vm[0] + ' vm_list="' + str(vm) + '"\n')
                 f.write('\n')
             for srv_type in ext_srv_types:
                 f.write('[kvm_' + region.lower() + i + '_' + srv_type + ']\n')
                 for row in srv_list:
                     vm = vm_names(row['hostname'])
-                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and vm.find(srv_type) != -1:
+                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and str(vm).find(srv_type) != -1:
                         f.write(row['hostname'][:-13] + '\n')
                 f.write('\n')
             group = site_groups(region, i)
