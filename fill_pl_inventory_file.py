@@ -1,7 +1,7 @@
 import os, openpyxl
 
 ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v035.xlsx'
+ip_plan = 'Tele2_IP_plan_v036.xlsx'
 inventory_dir = 'c:\\temp\\inventory\\'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']

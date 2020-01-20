@@ -1,4 +1,4 @@
-import os, openpyxl, re
+import openpyxl, re
 
 ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
 inventory_file = 'c:\\temp\\inventory\\kvm'
@@ -52,7 +52,7 @@ def rows_to_dict(region):
 
 
 with open(inventory_file, 'w', newline='\n') as f:
-    f.write('# List os KVMs\n\n')
+    f.write('# List of KVMs\n\n')
     for region in mr:
         srv_list = rows_to_dict(region)
         print('Collecting data about KVM in ' + region)
