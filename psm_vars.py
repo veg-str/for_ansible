@@ -1,37 +1,46 @@
-import os, openpyxl, yaml
+import openpyxl, yaml, re
 
-ip_plan_dir = 'c:\\Users\\ve.gusarin\\Seafile\\Tele2-2018-TMS\\07. Design\\'
-ip_plan = 'Tele2_IP_plan_v035.xlsx'
-vars_dir = 'c:\\temp\\group_vars\\'
+ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
+vars_dir = 'c:\\temp\\host_vars\\'
+
+# Open Excel file in read-only mode
+wb = openpyxl.load_workbook(ip_plan, True)
+
+mr = ['spb', 'mos', 'ros', 'nin', 'ekt', 'nsk']
 quorum = '2'
 
-mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 
-os.chdir(vars_dir)
+def prefix(mr, vlan):
+    prefix = ''
+    net = wb.defined_names[mr + '_nets'].attr_text
+    ws = wb[str(net[1:net.find('!') - 1])]
+    rng = net[net.find('!') + 1:]
+    for row in ws.iter_rows():
+        if row[0].value == vlan:
+            prefix = row[3].value
+    return prefix
 
-# Open Excel file in read-only mode:q
 
-wb = openpyxl.load_workbook(ip_plan_dir + ip_plan, True)
 
 def psm_list(mr):
-    ws = wb[mr]
+    ws = wb[mr.upper()]
     psms = []
     for row in ws.iter_rows():
-        if row[3].value == 'vm-Mgmt' and 'psm' in row[1].value and 'epsm' not in row[1].value:
+        if row[3].value == 'vm-Mgmt' and re.search("^psm", row[1].value):
             psms.append(row[1].value)
     return psms
 
 def psm_vars(mr, psm):
-    ws = wb[mr]
+    ws = wb[mr.upper()]
     ha = {}
     vars = {}
     for row in ws.iter_rows():
         if row[1].value == psm:
-            vars[row[3].value] = row[5].value
+            vars[row[3].value] = row[5].value + prefix(mr, row[3].value)
     ha['cluster_id'] = psm[4]
     for row in ws.iter_rows():
         if row[1].value == psm[:-14] + ' (VRRP VIP)':
-            ha[row[3].value + '_vip'] = row[5].value
+            ha[row[3].value + '_vip'] = row[5].value + prefix(mr, row[3].value)
     vars['ha'] = ha
     psm_vars = {psm[:-13]: vars}
     return psm_vars
@@ -43,7 +52,7 @@ for item in mr:
     for psm in psms:
         vars = psm_vars(item, psm)
 #        print(vars)
-        var_file = psm + '.yml'
+        var_file = vars_dir + psm + '.yml'
         with open(var_file, 'w', newline='\n') as f:
             f.write('# Variables for ' + psm + '\n#\n')
             f.write('# High availability related vars\n#\n')
