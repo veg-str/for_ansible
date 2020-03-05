@@ -1,6 +1,6 @@
 import openpyxl, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v040.xlsx'
 inventory_file = 'c:\\temp\\inventory\\packetlogick'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
@@ -61,7 +61,7 @@ with open(inventory_file, 'w', newline='\n') as f:
             for srv_type in base_srv_types:
                 f.write('[pl_' + region.lower() + i + '_' + srv_type + ']\n')
                 for row in srv_list:
-                    if row['vlan'] == 'vm-Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, row['hostname']):
+                    if row['vlan'] == 'vm_Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, row['hostname']):
                         f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip']) # + '\n')
                         if srv_type == 'pre':
                             f.write(' provisioning_ip=' + pre_prov_ip(row['hostname']) + '\n')

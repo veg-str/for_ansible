@@ -1,12 +1,13 @@
 import openpyxl, yaml, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v040.xlsx'
 vars_dir = 'c:\\temp\\host_vars\\'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
+mr = ['ekt']
+#mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
 quorum = '2'
 
 
@@ -37,7 +38,7 @@ def psm_list(mr):
     ws = wb[mr.upper()]
     psms = []
     for row in ws.iter_rows():
-        if row[3].value == 'vm-Mgmt' and re.search("^psm", row[1].value):
+        if row[3].value == 'vm_Mgmt' and re.search("^psm", row[1].value):
             psms.append(row[1].value)
     return psms
 
@@ -61,10 +62,10 @@ def psm_vars(mr, psm):
 rb = rb_vip()
 for item in mr:
     psms = psm_list(item)
-#    print(psms)
+    print(psms)
     for psm in psms:
         vars = psm_vars(item, psm)
-#        print(vars)
+        print(vars)
         var_file = vars_dir + psm[:10] + '.yml'
         with open(var_file, 'w', newline='\n') as f:
             f.write('# Variables for ' + psm + '\n#\n')

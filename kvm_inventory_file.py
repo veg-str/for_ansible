@@ -1,6 +1,6 @@
 import openpyxl, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v040.xlsx'
 inventory_file = 'c:\\temp\\inventory\\kvm'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
@@ -37,7 +37,7 @@ def global_group(srv_type):
 def vm_names(srv):
     vm_name = []
     for row in srv_list:
-        if row['hostname'] == srv and row['vlan'] == 'vm-Mgmt':
+        if row['hostname'] == srv and row['vlan'] == 'vm_Mgmt':
             vm_name.append(row['vm'][:-18])
     return vm_name
 
@@ -62,7 +62,7 @@ with open(inventory_file, 'w', newline='\n') as f:
                 f.write('[kvm_' + region.lower() + i + '_' + srv_type + ']\n')
                 for row in srv_list:
                     vm = vm_names(row['hostname'])
-                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, vm[0]):
+                    if row['vlan'] == 'Host_Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, vm[0]):
                         f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip'] +
                                 ' vm_name=' + vm[0] + ' vm_list="' + str(vm) + '"\n')
                 f.write('\n')
@@ -70,7 +70,7 @@ with open(inventory_file, 'w', newline='\n') as f:
                 f.write('[kvm_' + region.lower() + i + '_' + srv_type + ']\n')
                 for row in srv_list:
                     vm = vm_names(row['hostname'])
-                    if row['vlan'] == 'Host-Mgmt' and row['site'][-1] == i and str(vm).find(srv_type) != -1:
+                    if row['vlan'] == 'Host_Mgmt' and row['site'][-1] == i and str(vm).find(srv_type) != -1:
                         f.write(row['hostname'][:-13] + '\n')
                 f.write('\n')
             group = site_groups(region, i)
