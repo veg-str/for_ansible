@@ -6,12 +6,11 @@ conf_template = 'project_files\\psm_config_template.json'
 sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.2.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
-
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader('project_files')
 )
 
-mr = ['NSK']
+mr = ['NSK', 'NIN']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'
@@ -74,6 +73,13 @@ def get_psm_vip(srv):
     return psm_vip
 
 
+def get_radius_secret(region):
+    wb = openpyxl.load_workbook(sig_int, True)
+    ws = wb[region]
+    radius_secret = ws['M6'].value
+    return radius_secret
+
+
 def get_gy_peers(mr):
     wb = openpyxl.load_workbook(sig_int, True)
     s1_gy = wb.defined_names[mr.lower() + '_s1_gy'].attr_text
@@ -98,12 +104,12 @@ def get_local_gx_config(srv, region):
     s2_gx = wb.defined_names[region.lower() + '_s2_gx'].attr_text
     primPCRF = {}
     secPCRF = {}
-    if int(srv[3:5])%2 != 0:
+    if int(srv[3:5]) % 2 != 0:
         rng = s1_gx[s1_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '01.' + 'originRealm'
+        env.globals['originRealm'] = region.lower() + '1.' + originRealm
     else:
         rng = s2_gx[s2_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '02.' + 'originRealm'
+        env.globals['originRealm'] = region.lower() + '2.' + originRealm
     for row in ws[rng]:
         if row[-1].value == 'local_pcrf':
             if row[9].value != None:
@@ -116,7 +122,6 @@ def get_local_gx_config(srv, region):
                 secPCRF['realm'] = row[14].value
     template = env.get_template('local_gx_config.txt.j2')
     env.globals['originHost'] = srv[:5]
-#    env.globals['originRealm'] = originRealm
     env.globals['gxVIP'] = psm_vip['Gx']
     env.globals['primPCRF'] = primPCRF
     env.globals['secPCRF'] = secPCRF
@@ -131,10 +136,12 @@ def get_remote_gx_config(srv, region):
     s2_gx = wb.defined_names[region.lower() + '_s2_gx'].attr_text
     primPCRF = {}
     secPCRF = {}
-    if int(srv[3:5])%2 != 0:
+    if int(srv[3:5]) % 2 != 0:
         rng = s1_gx[s1_gx.find('!') + 1:]
+        env.globals['originRealm'] = region.lower() + '1.' + originRealm
     else:
         rng = s2_gx[s2_gx.find('!') + 1:]
+        env.globals['originRealm'] = region.lower() + '2.' + originRealm
     for row in ws[rng]:
         if row[-1].value == 'dra':
             if row[9].value != None:
@@ -146,8 +153,8 @@ def get_remote_gx_config(srv, region):
                 secPCRF['hostName'] = row[13].value
                 secPCRF['realm'] = row[14].value
     template = env.get_template('remote_gx_config.txt.j2')
-    env.globals['originHost'] = srv
-    env.globals['originRealm'] = originRealm
+    env.globals['originHost'] = srv[:5]
+#    env.globals['originRealm'] = originRealm
     env.globals['gxVIP'] = psm_vip['Gx']
     env.globals['primPCRF'] = primPCRF
     env.globals['secPCRF'] = secPCRF
@@ -172,6 +179,15 @@ def edit_psm_schema(config, srv):
                 if field['name'] == 'nodeId':
                     field['defaultValue'] = srv
     config['messages'] = messages
+    return config
+
+
+def edit_psm_provisionerng_base(config, srv):
+    fields = config['schemas'][0]['fields']
+    for field in fields:
+        if field['name'] == 'psmIdentity':
+            field['mapping'] = '\"' + srv[:5] + '\"'
+    config['schemas'][0]['fields'] = fields
     return config
 
 
@@ -210,7 +226,7 @@ for region in mr:
         for srv in srv_list:
             config_source = prepare_template(config_template)
             psm_vip = get_psm_vip(srv)
-            #**** Editing different component parameters ****
+            # **** Editing different component parameters ****
             components = config_source['components']
             for component in components:
                 if component['componentId'] == 'psm.diameter':
@@ -237,6 +253,10 @@ for region in mr:
                     component['config'] = edit_psm_schema(component['config'], srv)
                 elif component['componentId'] == 'psm.source.udp.radius':
                     component['config']['hostName'] = psm_vip['Radius']
+                    component['config']['secrets'][0]['secret'] = get_radius_secret(region)
+                elif component['componentId'] == 'psm.provisionerng.base':
+                    component['config']['identity'] = srv[:5]
+                    component['config'] = edit_psm_provisionerng_base(component['config'], srv)
             # **** Adding remote and local Gx configuration sections ****
             components.append(set_psm_diameterdmanager(get_remote_gx_config(srv, region)))
             components.append(set_psm_diameterdmanager(get_local_gx_config(srv, region)))
