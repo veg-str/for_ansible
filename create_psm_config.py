@@ -220,7 +220,7 @@ for region in mr:
     gy_peers = get_gy_peers(region)
     psms = psm_list(region)
     pre_list = get_pre_list(region)
-
+    radius_secret = get_radius_secret(region)
     with open(conf_template, "r") as file:
         config_template = json.load(file)
         for srv in srv_list:
@@ -253,7 +253,7 @@ for region in mr:
                     component['config'] = edit_psm_schema(component['config'], srv)
                 elif component['componentId'] == 'psm.source.udp.radius':
                     component['config']['hostName'] = psm_vip['Radius']
-                    component['config']['secrets'][0]['secret'] = get_radius_secret(region)
+                    component['config']['secrets'][0]['secret'] = radius_secret
                 elif component['componentId'] == 'psm.provisionerng.base':
                     component['config']['identity'] = srv[:5]
                     component['config'] = edit_psm_provisionerng_base(component['config'], srv)
