@@ -1,12 +1,12 @@
 import openpyxl, yaml, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v040.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
 vars_dir = 'c:\\temp\\host_vars\\'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['ekt']
+mr = ['ekt', 'nin']
 #mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
 quorum = '2'
 
@@ -49,11 +49,11 @@ def psm_vars(mr, psm):
     vars = {}
     for row in ws.iter_rows():
         if row[1].value == psm:
-            vars[row[3].value] = row[5].value + prefix(mr, row[3].value)
+            vars[re.search("^\D{1,20}", str(row[3].value)).group(0)] = row[5].value + prefix(mr, row[3].value)
     ha['cluster_id'] = psm[4]
     for row in ws.iter_rows():
         if row[1].value == psm[:-14] + ' (VRRP VIP)':
-            ha[row[3].value + '_vip'] = row[5].value + prefix(mr, row[3].value)
+            ha[re.search("^\D{1,20}", str(row[3].value)).group(0) + '_vip'] = row[5].value + prefix(mr, row[3].value)
     vars['ha'] = ha
     psm_vars = {psm[:-13]: vars}
     return psm_vars

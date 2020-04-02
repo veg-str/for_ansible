@@ -1,7 +1,7 @@
 import json, openpyxl, re, jinja2, datetime
 from pprint import pprint
 
-ip_plan = 'project_files\\Tele2_IP_plan_v036.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v043.xlsx'
 conf_template = 'project_files\\psm_config_template.json'
 sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.2.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'

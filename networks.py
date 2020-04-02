@@ -1,16 +1,32 @@
 import openpyxl, yaml
 
-ip_plan = 'project_files\\Tele2_IP_plan_v040.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v043.xlsx'
 vars_file = 'c:\\temp\\group_vars\\networks.yml'
 
 wb = openpyxl.load_workbook(ip_plan, True)
 
 mr = ['spb', 'mos', 'ros', 'nin', 'ekt', 'nsk']
-vlans = ['Gx', 'Gy', 'Radius', 'RadiusFE', 'Resource', 'Provisioning', 'ClusterSync', 'OOB_Mgmt', 'Host_Mgmt', 'vm_Mgmt', 'DataFeed']
+#vlans = ['Gx', 'Gy', 'Radius', 'RadiusFE', 'Resource', 'Provisioning', 'ClusterSync', 'OOB_Mgmt', 'Host_Mgmt', 'vm_Mgmt', 'DataFeed']
 reg = {}
 subnets = {}
 
+
+def get_vlans():
+    vlans = []
+    ws = wb['Dictionary']
+    i = 2
+    cell = 'D' + str(i)
+    while ws[cell].value:
+        if 'FlowControl' not in ws[cell].value:
+            vlans.append(ws[cell].value)
+        i = i + 1
+        cell = 'D' + str(i)
+    print(vlans)
+    return vlans
+
+
 with open(vars_file, 'w', newline='\n') as f:
+    vlans = get_vlans()
     for region in mr:
         for i in (1, 2):
             print('# Subnets in region ' + region.upper() + ', Site' + str(i))
