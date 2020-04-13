@@ -1,6 +1,6 @@
 import openpyxl, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v043.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
 inventory_file = 'c:\\temp\\inventory\\packetlogick'
 
 mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']

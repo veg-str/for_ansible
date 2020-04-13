@@ -1,16 +1,16 @@
 import json, openpyxl, re, jinja2, datetime
 from pprint import pprint
 
-ip_plan = 'project_files\\Tele2_IP_plan_v043.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
 conf_template = 'project_files\\psm_config_template.json'
-sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.2.xlsx'
+sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.4.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader('project_files')
 )
 
-mr = ['NSK', 'NIN']
+mr = ['EKT']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'
@@ -69,7 +69,7 @@ def get_psm_vip(srv):
     psm_vip = {}
     for row in ws.iter_rows():
         if re.search(srv + ".*\(VRRP VIP\)", str(row[1].value)):
-            psm_vip[row[3].value] = row[5].value
+            psm_vip[row[2].value] = row[5].value
     return psm_vip
 
 

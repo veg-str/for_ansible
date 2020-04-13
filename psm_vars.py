@@ -6,9 +6,9 @@ vars_dir = 'c:\\temp\\host_vars\\'
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['ekt', 'nin']
+mr = ['ekt']
 #mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
-quorum = '2'
+quorum = '1'
 
 
 def rb_vip():
