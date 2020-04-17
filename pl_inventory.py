@@ -42,6 +42,14 @@ def pre_prov_ip(srv):
     return prov_ip
 
 
+def pic_dadafeed_ip(srv):
+    df_ip = ''
+    for row in srv_list:
+        if row['hostname'] == srv and row['vlan'] == 'DataFeed':
+            df_ip = row['ip']
+    return df_ip
+
+
 def rows_to_dict(region):
     kvm_list = []
     ws = wb[region]
@@ -65,6 +73,8 @@ with open(inventory_file, 'w', newline='\n') as f:
                         f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip']) # + '\n')
                         if srv_type == 'pre':
                             f.write(' provisioning_ip=' + pre_prov_ip(row['hostname']) + '\n')
+                        elif srv_type == 'pic':
+                            f.write(' datafeed_ip=' + pic_dadafeed_ip(row['hostname']) + '\n')
                         else:
                             f.write('\n')
                 f.write('\n')

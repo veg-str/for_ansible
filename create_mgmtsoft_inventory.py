@@ -2,7 +2,8 @@
 import openpyxl, re, datetime
 import lxml.etree as xml
 
-mr = ['ekt', 'mos', 'nin', 'nsk', 'ros', 'spb']
+mr = ['ekt']
+#mr = ['ekt', 'mos', 'nin', 'nsk', 'ros', 'spb']
 base_srv_types = ['pre', 'psm', 'pic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
@@ -84,16 +85,18 @@ def create_superputty_inv():
             type = re.search("^\D{1,4}", srv['vmname']).group(0)
             if type in base_srv_types:
                 type = type.upper()
+                attr['Port'] = '42002'
+                attr['Username'] = 'pladmin'
             else:
                 type = 'Other'
+                attr['Username'] = 'root'
+                attr['Port'] = '22'
             attr['SessionId'] = 'Tele2-TMS/' + region.upper() + '/' + srv['site'] + '/' + type + '/' + srv['vmname']
             attr['SessionName'] = srv['vmname']
             attr['ImageKey'] = 'computer'
             attr['Host'] = srv['ip']
-            attr['Port'] = '42002'
             attr['Proto'] = 'SSH'
             attr['PuttySession'] = "Default Settings"
-            attr['Username'] = 'pladmin'
             attr['ExtraArgs'] = ''
             attr['SPSLFileName'] = ''
             xml.SubElement(root, "SessionData", attrib = attr)

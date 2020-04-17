@@ -87,8 +87,10 @@ for item in mr:
             f.write('provisioning_ip: ' + vars[psm[:-13]]['Provisioning'] + '\n')
             f.write('cluster_sync_ip: ' + vars[psm[:-13]]['ClusterSync'] + '\n')
             f.write('#\n' + '# Other vars\n#\n')
-            f.write('rb01_vip: ' + rb[item]['rb01.' + item] + '\n')
-            f.write('rb02_vip: ' + rb[item]['rb02.' + item] + '\n')
+            if int(psm[3:5])%2 != 0:
+                f.write('rb_vip: ' + rb[item]['rb01.' + item] + '\n')
+            else:
+                f.write('rb02_vip: ' + rb[item]['rb02.' + item] + '\n')
             print(vars)
 
 print(yaml.dump(vars[list(vars.keys())[0]]))

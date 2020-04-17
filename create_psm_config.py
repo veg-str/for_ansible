@@ -32,7 +32,7 @@ def psm_list(region):
     wb = openpyxl.load_workbook(ip_plan, True)
     ws = wb[region]
     for row in ws.iter_rows():
-        if re.search("^psm\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'vm-Mgmt':
+        if re.search("^psm\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'vm_Mgmt':
             psm_list[row[1].value] = {'Site': row[6].value}
     for psm in psm_list.keys():
         psm_ips = {}
