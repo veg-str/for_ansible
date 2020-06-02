@@ -1,11 +1,12 @@
 import openpyxl, yaml
 
-ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
 vars_file = 'c:\\temp\\group_vars\\networks.yml'
 
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['spb', 'mos', 'ros', 'nin', 'ekt', 'nsk']
+mr = ['ekt', 'nsk']
+#mr = ['spb', 'mos', 'ros', 'nin', 'ekt', 'nsk']
 #vlans = ['Gx', 'Gy', 'Radius', 'RadiusFE', 'Resource', 'Provisioning', 'ClusterSync', 'OOB_Mgmt', 'Host_Mgmt', 'vm_Mgmt', 'DataFeed']
 reg = {}
 subnets = {}

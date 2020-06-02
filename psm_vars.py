@@ -1,12 +1,12 @@
 import openpyxl, yaml, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
 vars_dir = 'c:\\temp\\host_vars\\'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['ekt']
+mr = ['ekt', 'nsk']
 #mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
 quorum = '1'
 
@@ -62,10 +62,10 @@ def psm_vars(mr, psm):
 rb = rb_vip()
 for item in mr:
     psms = psm_list(item)
-    print(psms)
+#    print(psms)
     for psm in psms:
         vars = psm_vars(item, psm)
-        print(vars)
+#        print(vars)
         var_file = vars_dir + psm[:10] + '.yml'
         with open(var_file, 'w', newline='\n') as f:
             f.write('# Variables for ' + psm + '\n#\n')
@@ -87,10 +87,10 @@ for item in mr:
             f.write('provisioning_ip: ' + vars[psm[:-13]]['Provisioning'] + '\n')
             f.write('cluster_sync_ip: ' + vars[psm[:-13]]['ClusterSync'] + '\n')
             f.write('#\n' + '# Other vars\n#\n')
-            if int(psm[3:5])%2 != 0:
-                f.write('rb_vip: ' + rb[item]['rb01.' + item] + '\n')
-            else:
-                f.write('rb02_vip: ' + rb[item]['rb02.' + item] + '\n')
-            print(vars)
+#            if int(psm[3:5])%2 != 0:
+            f.write('rb01_vip: ' + rb[item]['rb01.' + item] + '\n')
+#            else:
+            f.write('rb02_vip: ' + rb[item]['rb02.' + item] + '\n')
+#            print(vars)
 
 print(yaml.dump(vars[list(vars.keys())[0]]))

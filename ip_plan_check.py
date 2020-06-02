@@ -1,7 +1,7 @@
 import openpyxl, ipaddress
 
-ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
-mr = ['nin', 'ekt', 'nsk']
+ip_plan = 'project_files\\Tele2_IP_plan_v2.01.xlsx'
+mr = ['ekt', 'nsk']
 #mr = ['spb', 'mos', 'ros', 'nin', 'ekt', 'nsk']
 #vlans = ['Gx', 'Gy', 'Radius', 'RadiusFE', 'Resource', 'Provisioning', 'ClusterSync', 'OOB_Mgmt', 'Host_Mgmt', 'vm_Mgmt', 'DataFeed']
 check_results = {}

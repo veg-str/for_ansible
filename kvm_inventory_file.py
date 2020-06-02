@@ -1,10 +1,11 @@
 import openpyxl, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
 inventory_file = 'c:\\temp\\inventory\\kvm'
 
-mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
-base_srv_types = ['pre', 'psm', 'pic']
+mr = ['EKT', 'NSK']
+#mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
+base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 
 wb = openpyxl.load_workbook(ip_plan, True)

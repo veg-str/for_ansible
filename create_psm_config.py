@@ -1,7 +1,7 @@
 import json, openpyxl, re, jinja2, datetime
 from pprint import pprint
 
-ip_plan = 'project_files\\Tele2_IP_plan_v044.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
 conf_template = 'project_files\\psm_config_template.json'
 sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.4.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
@@ -94,6 +94,13 @@ def get_gy_peers(mr):
                          "enabled": True,
                          "watchdogTimeoutMs": 30000
                          })
+    gy_peers.append({"peerId": "T2TST-RTUCG-01-2",
+                     "hostName": "10.78.245.57",
+                     "port": 3878,
+                     "bindAddress": None,
+                     "enabled": False, #True,
+                     "watchdogTimeoutMs": 30000
+                     })
     return gy_peers
 
 
@@ -106,10 +113,10 @@ def get_local_gx_config(srv, region):
     secPCRF = {}
     if int(srv[3:5]) % 2 != 0:
         rng = s1_gx[s1_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '1.' + originRealm
+        env.globals['originRealm'] = region.lower() + '01.' + originRealm
     else:
         rng = s2_gx[s2_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '2.' + originRealm
+        env.globals['originRealm'] = region.lower() + '02.' + originRealm
     for row in ws[rng]:
         if row[-1].value == 'local_pcrf':
             if row[9].value != None:
@@ -138,10 +145,10 @@ def get_remote_gx_config(srv, region):
     secPCRF = {}
     if int(srv[3:5]) % 2 != 0:
         rng = s1_gx[s1_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '1.' + originRealm
+        env.globals['originRealm'] = region.lower() + '01.' + originRealm
     else:
         rng = s2_gx[s2_gx.find('!') + 1:]
-        env.globals['originRealm'] = region.lower() + '2.' + originRealm
+        env.globals['originRealm'] = region.lower() + '02.' + originRealm
     for row in ws[rng]:
         if row[-1].value == 'dra':
             if row[9].value != None:
