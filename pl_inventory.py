@@ -1,9 +1,9 @@
 import openpyxl, re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v2.01.xlsx'
 inventory_file = 'c:\\temp\\inventory\\packetlogick'
 
-mr = ['EKT', 'NSK']
+mr = ['NIN']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
@@ -55,7 +55,7 @@ def rows_to_dict(region):
     kvm_list = []
     ws = wb[region]
     for row in ws.iter_rows():
-        if str(row[1].value)[:3] in base_srv_types:
+        if str(row[1].value)[:-20] in base_srv_types:
             kvm_list.append({'hostname': row[1].value, 'vlan': row[3].value, 'ip': row[5].value, 'site': row[6].value})
     return kvm_list
 
@@ -74,7 +74,7 @@ with open(inventory_file, 'w', newline='\n') as f:
                         f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip']) # + '\n')
                         if srv_type == 'pre':
                             f.write(' provisioning_ip=' + pre_prov_ip(row['hostname']) + '\n')
-                        elif srv_type == 'pic':
+                        elif srv_type in ['pic', 'apic']:
                             f.write(' datafeed_ip=' + pic_dadafeed_ip(row['hostname']) + '\n')
                         else:
                             f.write('\n')

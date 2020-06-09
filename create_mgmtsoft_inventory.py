@@ -2,7 +2,7 @@
 import openpyxl, re, datetime
 import lxml.etree as xml
 
-mr = ['nsk']
+mr = ['ekt', 'nsk']
 #mr = ['ekt', 'mos', 'nin', 'nsk', 'ros', 'spb']
 base_srv_types = ['pre', 'psm', 'pic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
