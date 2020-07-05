@@ -2,11 +2,11 @@
 import openpyxl, re, datetime
 import lxml.etree as xml
 
-mr = ['ekt', 'nsk']
-#mr = ['ekt', 'mos', 'nin', 'nsk', 'ros', 'spb']
-base_srv_types = ['pre', 'psm', 'pic']
+#mr = ['ekt']
+mr = ['ekt', 'mos', 'nin', 'nsk', 'ros', 'spb']
+base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
-ip_plan = 'project_files\\Tele2_IP_plan_v045.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v2.02.xlsx'
 wb = openpyxl.load_workbook(ip_plan, True)
 
 

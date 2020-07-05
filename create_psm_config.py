@@ -2,7 +2,7 @@ import json, openpyxl, re, jinja2, datetime
 from pprint import pprint
 
 ip_plan = 'project_files\\Tele2_IP_plan_v2.01.xlsx'
-conf_template = 'project_files\\psm_config_template.json'
+conf_template = 'project_files\\psm_config_template_nsk.json'
 sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.4.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
@@ -10,7 +10,7 @@ env = jinja2.Environment(
     loader=jinja2.FileSystemLoader('project_files')
 )
 
-mr = ['NIN', 'NSK', 'EKT']
+mr = ['EKT']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'
