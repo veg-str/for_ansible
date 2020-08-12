@@ -1,5 +1,6 @@
 {
 	"formatVersion": 2,
+	"description": "Python script generated config",
 	"components": [
 		{
 			"componentId": "org.ops4j.pax.logging",
@@ -502,7 +503,7 @@
 						}
 					}
 				],
-				"originHost": "psm02.nsk",
+				"originHost": "psm01.nin",
 				"writeTimeoutMs": 5000,
 				"originRealm": "node.epc.mnc020.mcc250.3gppnetwork.org"
 			}
@@ -545,7 +546,7 @@
 						"peerId": "t2ru-ggsnocs-01",
 						"hostName": "10.0.68.201",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -553,7 +554,7 @@
 						"peerId": "t2ru-ggsnocs-02",
 						"hostName": "10.0.68.202",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -561,7 +562,7 @@
 						"peerId": "t2ru-ggsnocs-03",
 						"hostName": "10.0.68.203",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -569,7 +570,7 @@
 						"peerId": "t2ru-ggsnocs-04",
 						"hostName": "10.0.68.204",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -577,7 +578,7 @@
 						"peerId": "T2RU_GGSNRTUCG_11",
 						"hostName": "10.0.68.205",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -585,7 +586,7 @@
 						"peerId": "T2RU_GGSNRTUCG_12",
 						"hostName": "10.0.68.206",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -593,7 +594,7 @@
 						"peerId": "T2RU_GGSNRTUCG_13",
 						"hostName": "10.0.68.207",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -601,7 +602,7 @@
 						"peerId": "T2RU_GGSNRTUCG_14",
 						"hostName": "10.0.68.208",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -609,7 +610,7 @@
 						"peerId": "T2RU_GGSNRTUCG_15",
 						"hostName": "10.0.68.209",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -617,7 +618,7 @@
 						"peerId": "T2RU_GGSNRTUCG_16",
 						"hostName": "10.0.68.210",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -625,7 +626,7 @@
 						"peerId": "T2RU_GGSNRTUCG_17",
 						"hostName": "10.0.68.211",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -633,7 +634,7 @@
 						"peerId": "T2RU_GGSNRTUCG_18",
 						"hostName": "10.0.68.212",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -641,7 +642,7 @@
 						"peerId": "T2RU_GGSNRTUCG_19",
 						"hostName": "10.0.68.213",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -649,7 +650,7 @@
 						"peerId": "T2RU_GGSNRTUCG_20",
 						"hostName": "10.0.68.214",
 						"port": 3868,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": true,
 						"watchdogTimeoutMs": 30000
 					},
@@ -657,7 +658,7 @@
 						"peerId": "T2TST-RTUCG-01-2",
 						"hostName": "10.78.245.57",
 						"port": 3878,
-						"bindAddress": "10.222.37.49",
+						"bindAddress": "10.228.249.33",
 						"enabled": false,
 						"watchdogTimeoutMs": 30000
 					}
@@ -669,7 +670,7 @@
 			"instanceId": null,
 			"version": 5,
 			"config": {
-				"config": "# Remote PCRF via DRA Signaling links\n# PSM/PCEF Diameter attributes \n$ORIGIN-HOST psm02.nsk02.node.epc.mnc020.mcc250.3gppnetwork.org\n$ORIGIN-REALM nsk02.node.epc.mnc020.mcc250.3gppnetwork.org\n$HOST-IP 10.222.37.17\n\n$INSTANCE-ID 2\n$TABLE-EVENT-SUBSCRIPTION-DISABLED 1\n\n$DISABLE-MK-WITH-GSU 1 # This key solve Gx over-repoting problem\n\n#PCRF peers atttributes\n$MAX-CONNECTED-PCRFS 4\n$LOAD-BALANCE 0\n\n$PCRF-ADDRESS 10.12.67.60\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST DRA01.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.12.67.252\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST DRA02.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.251.14.60\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST DRA11.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.251.14.252\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST DRA12.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$SESSION-FLUSH-ENABLED 1\n#$ATTR-SESSION-FLUSH: References a field in the Model holding a timestamp. The timestamp should be used by a time\n$ATTR-SESSION-FLUSH gxFlushTimeStamp\n#Set $ATTR-SESSION-FLUSH = now + 10000\n$SESSION-FLUSH-TIME 10\n$OPENING-CONDITION 1\n$ATTR-OPENING-CONDITION gxOpenConditionRemote\n\n$ATTR-PCRF pcrfAddress\n$ATTR-SESSION-ID ccSessionId\n\n#Dynamic Diameter Gx attributes cca-i -> ccr-u mapping\n$ATTR-DEST-HOST gxOriginHost\n$BIND-TO-HOST 1\n$ATTR-DEST-REALM gxOriginRealm\n$BIND-TO-REALM 1\n\n$SESSION-SCHEMA-NAME session\n$SUBSCRIBER-SCHEMA-NAME subscriber\n\n$MONITORING-MAX-ENTRIES 48\n# Subscribers Session Attributes\n$ATTR-IMSI subscriberId\n$ATTR-MSISDN msisdn\n\n$ATTR-COUNTERS gxCounters\n$ATTR-RAT rat\n# $ATTR-3GPP-RAT rat3gpp\n$ATTR-IP-CAN_STATIC integer 5\n$ATTR-IPV4 sessionId\n$ATTR-CC-REQUEST-COUNTER ccCounter\n$ATTR-FLAGS flags\n$ATTR-RESULT pcrfResultRemote\n$ATTR-RULE gxRules\n$ATTR-RULE-NAME ruleName\n$ATTR-RULE-ACTIVATION-TIME activationTime\n$ATTR-RULE-DEACTIVATION-TIME deactivationTime\n$ATTR-RULE-ACTIVATED activated\n$ATTR-3GPP-SGSN sgsn\n$ATTR-3GPP-SGSN-MCC-MNC sgsnmccmnc\n$ATTR-USER-LOCATION-INFO uli\n$ATTR-CALLED-STATION-ID session.apn\n$ATTR-IMEISV imeisv\n$CUSTOM-ATTR session.ueTimeZone int16 3GPP-MS-TimeZone 23 10415 vendor-specific outgoing ccri | ccru\n$CUSTOM-ATTR gxCcCounter int64 gxCcCounter 1001 11821 vendor-specific outgoing ccru\n\n## disabled V.Marchenko 18.12.2018 for Roaming Tests\n$ATTR-APN-AGGREGATE-MAX-BITRATE-UL shapingUL\n$ATTR-APN-AGGREGATE-MAX-BITRATE-DL shapingDL\n\n# $ATTR-RULE-MAX-REQUESTED-BW-UL shapingUL\n# $ATTR-RULE-MAX-REQUESTED-BW-DL shapingDL\n\n# comment by sshirokov 20190924\n#$EVENT-RAT-TOGGLE 1\n#$EVENT-SGSN-TOGGLE 1\n#$EVENT-RAT-REPORT-UMI 1\n\n# Tele2 PCC Rule to MK mapping for Gx\n\n$MONITORING-RULES 1001 DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1002 DEF_2_GPRS_QOS_UNLIM DEF_2_YOUTUBE_GPRS_QOS_840 DEF_2_P2P_GPRS_QOS_64 DEF_2_VK_GPRS_QOS_840\n$MONITORING-RULES 1003 DEF_3_GPRS_QOS_UNLIM DEF_3_YOUTUBE_GPRS_QOS_840 DEF_3_P2P_GPRS_QOS_64 DEF_VK_LIM_GPRS_QOS_UNLIM DEF_3_VK_GPRS_QOS_840 DEF_BLOCK_TETHERING DEF_BLOCK_TABLET BEELINE_GPRS_QOS_LIM MNC_STEP_GPRS_QOS_BLOCK\n$MONITORING-RULES 1004 DEF_4_GPRS_QOS_UNLIM DEF_4_YOUTUBE_GPRS_QOS_840 DEF_4_P2P_GPRS_QOS_64 DEF_4_VK_GPRS_QOS_840 DEF_WEEKEND_GPRS_QOS_UNLIM DEF_WHITELIST DEF_BLACKLIST DEF_LIST_TAC_GPRS_QOS DEF_TOD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1005 DEF_5_GPRS_QOS_UNLIM DEF_5_YOUTUBE_GPRS_QOS_840 DEF_5_P2P_GPRS_QOS_64 DEF_5_VK_GPRS_QOS_840\n$MONITORING-RULES 1006 DEF_6_GPRS_QOS_UNLIM DEF_6_YOUTUBE_GPRS_QOS_840 DEF_6_P2P_GPRS_QOS_64 DEF_6_VK_GPRS_QOS_840\n$MONITORING-RULES 1007 DEF_7_GPRS_QOS_UNLIM DEF_7_YOUTUBE_GPRS_QOS_840 DEF_7_P2P_GPRS_QOS_64 DEF_7_VK_GPRS_QOS_840\n$MONITORING-RULES 1008 DEF_8_GPRS_QOS_UNLIM DEF_8_YOUTUBE_GPRS_QOS_840 DEF_8_P2P_GPRS_QOS_64 DEF_8_VK_GPRS_QOS_840\n$MONITORING-RULES 1009 DEF_9_GPRS_QOS_UNLIM\n$MONITORING-RULES 1010 DEF_10_GPRS_QOS_UNLIM\n$MONITORING-RULES 1014 DEF_14_GPRS_QOS_UNLIM\n$MONITORING-RULES 1041 DEF_41_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1100 DEF_FREE_GPRS_QOS_UNLIM DEF_100_YOUTUBE_GPRS_QOS_840 DEF_100_GPRS_QOS_UNLIM DEF_100_P2P_GPRS_QOS_64 DEF_100_VK_GPRS_QOS_840\n$MONITORING-RULES 1105 DEF_105_GPRS_QOS_UNLIM\n$MONITORING-RULES 1110 DEF_10110_GPRS_QOS_UNLIM\n$MONITORING-RULES 1120 DEF_NIGHT_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1201 MIU_DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1202 MIU_DEF_2_GPRS_QOS_UNLIM\n$MONITORING-RULES 1203 MIU_DEF_3_GPRS_QOS_UNLIM\n$MONITORING-RULES 1204 MIU_DEF_4_GPRS_QOS_UNLIM\n$MONITORING-RULES 1205 MIU_DEF_5_GPRS_QOS_UNLIM\n$MONITORING-RULES 1221 DEF_INT_TV_GPRS_QOS_UNLIM\n$MONITORING-RULES 1222 DEF_T2TV_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1813 DEF_813_GPRS_QOS_UNLIM DEF_VK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1814 DEF_OK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1815 DEF_FB_GPRS_QOS_UNLIM\n$MONITORING-RULES 1816 DEF_WA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1817 DEF_VIBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1818 DEF_NAVI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1819 DEF_YATAXI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1820 DEF_TAMTAM_GPRS_QOS_UNLIM\n$MONITORING-RULES 1822 DEF_CHIGAP_GPRS_QOS_UNLIM\n$MONITORING-RULES 1823 DEF_YOUTUBE_GPRS_QOS_UNLIM\n$MONITORING-RULES 1824 DEF_FOTOSTRANA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1825 DEF_LOVEMAIL_GPRS_QOS_UNLIM\n$MONITORING-RULES 1826 DEF_LOVEPLANET_GPRS_QOS_UNLIM\n$MONITORING-RULES 1827 DEF_MAMBA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1828 DEF_TEAMO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1830 DEF_YAREKLAMA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1832 DEF_SOS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1833 DEF_INST_GPRS_QOS_UNLIM\n$MONITORING-RULES 1834 DEF_TWITCH_GPRS_QOS_UNLIM\n$MONITORING-RULES 1835 DEF_TINDER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1836 DEF_BADOO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1838 DEF_PTT_GPRS_QOS_UNLIM\n$MONITORING-RULES 1839 DEF_DISCORD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1840 DEF_GMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1841 DEF_APPMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1842 DEF_4SQ_GPRS_QOS_UNLIM\n$MONITORING-RULES 1843 DEF_UBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1844 DEF_ICQ_GPRS_QOS_UNLIM\n\n# $CUSTOM-ATTR defEPSQoS string Default-EPS-Bearer-QoS 1049 10415 vendor-specific incoming ccai | ccau\n\n$3GPP-REL-MINOR 9\n\n# $DEBUG 1\n# $VERBOSE 1"
+				"config": "# Remote PCRF via DRA Signaling links\n# PSM/PCEF Diameter attributes \n$ORIGIN-HOST psm01.nin01.node.epc.mnc020.mcc250.3gppnetwork.org\n$ORIGIN-REALM nin01.node.epc.mnc020.mcc250.3gppnetwork.org\n$HOST-IP 10.228.249.1\n\n$INSTANCE-ID 2\n$TABLE-EVENT-SUBSCRIPTION-DISABLED 1\n\n$DISABLE-MK-WITH-GSU 1 # This key solve Gx over-repoting problem\n\n#PCRF peers atttributes\n$MAX-CONNECTED-PCRFS 4\n$LOAD-BALANCE 0\n\n$PCRF-ADDRESS 10.12.67.60\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST DRA01.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.12.67.252\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST DRA02.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.251.14.60\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST DRA11.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$PCRF-ADDRESS 10.251.14.252\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST DRA12.EPC.MNC020.MCC250.3GPPNETWORK.ORG\n$DESTINATION-REALM EPC.MNC020.MCC250.3GPPNETWORK.ORG\n\n$SESSION-FLUSH-ENABLED 1\n#$ATTR-SESSION-FLUSH: References a field in the Model holding a timestamp. The timestamp should be used by a time\n$ATTR-SESSION-FLUSH gxFlushTimeStamp\n#Set $ATTR-SESSION-FLUSH = now + 10000\n$SESSION-FLUSH-TIME 10\n$OPENING-CONDITION 1\n$ATTR-OPENING-CONDITION gxOpenConditionRemote\n\n$ATTR-PCRF pcrfAddress\n$ATTR-SESSION-ID ccSessionId\n\n#Dynamic Diameter Gx attributes cca-i -> ccr-u mapping\n$ATTR-DEST-HOST gxOriginHost\n$BIND-TO-HOST 1\n$ATTR-DEST-REALM gxOriginRealm\n$BIND-TO-REALM 1\n\n$SESSION-SCHEMA-NAME session\n$SUBSCRIBER-SCHEMA-NAME subscriber\n\n$MONITORING-MAX-ENTRIES 48\n# Subscribers Session Attributes\n$ATTR-IMSI subscriberId\n$ATTR-MSISDN msisdn\n\n$ATTR-COUNTERS gxCounters\n$ATTR-RAT rat\n# $ATTR-3GPP-RAT rat3gpp\n$ATTR-IP-CAN_STATIC integer 5\n$ATTR-IPV4 sessionId\n$ATTR-CC-REQUEST-COUNTER ccCounter\n$ATTR-FLAGS flags\n$ATTR-RESULT pcrfResultRemote\n$ATTR-RULE gxRules\n$ATTR-RULE-NAME ruleName\n$ATTR-RULE-ACTIVATION-TIME activationTime\n$ATTR-RULE-DEACTIVATION-TIME deactivationTime\n$ATTR-RULE-ACTIVATED activated\n$ATTR-3GPP-SGSN sgsn\n$ATTR-3GPP-SGSN-MCC-MNC sgsnmccmnc\n$ATTR-USER-LOCATION-INFO uli\n$ATTR-CALLED-STATION-ID session.apn\n$ATTR-IMEISV imeisv\n$CUSTOM-ATTR session.ueTimeZone int16 3GPP-MS-TimeZone 23 10415 vendor-specific outgoing ccri | ccru\n$CUSTOM-ATTR gxCcCounter int64 gxCcCounter 1001 11821 vendor-specific outgoing ccru\n\n## disabled V.Marchenko 18.12.2018 for Roaming Tests\n$ATTR-APN-AGGREGATE-MAX-BITRATE-UL shapingUL\n$ATTR-APN-AGGREGATE-MAX-BITRATE-DL shapingDL\n\n# $ATTR-RULE-MAX-REQUESTED-BW-UL shapingUL\n# $ATTR-RULE-MAX-REQUESTED-BW-DL shapingDL\n\n# comment by sshirokov 20190924\n#$EVENT-RAT-TOGGLE 1\n#$EVENT-SGSN-TOGGLE 1\n#$EVENT-RAT-REPORT-UMI 1\n\n# Tele2 PCC Rule to MK mapping for Gx\n\n$MONITORING-RULES 1001 DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1002 DEF_2_GPRS_QOS_UNLIM DEF_2_YOUTUBE_GPRS_QOS_840 DEF_2_P2P_GPRS_QOS_64 DEF_2_VK_GPRS_QOS_840\n$MONITORING-RULES 1003 DEF_3_GPRS_QOS_UNLIM DEF_3_YOUTUBE_GPRS_QOS_840 DEF_3_P2P_GPRS_QOS_64 DEF_VK_LIM_GPRS_QOS_UNLIM DEF_3_VK_GPRS_QOS_840 DEF_BLOCK_TETHERING DEF_BLOCK_TABLET BEELINE_GPRS_QOS_LIM MNC_STEP_GPRS_QOS_BLOCK\n$MONITORING-RULES 1004 DEF_4_GPRS_QOS_UNLIM DEF_4_YOUTUBE_GPRS_QOS_840 DEF_4_P2P_GPRS_QOS_64 DEF_4_VK_GPRS_QOS_840 DEF_WEEKEND_GPRS_QOS_UNLIM DEF_WHITELIST DEF_BLACKLIST DEF_LIST_TAC_GPRS_QOS DEF_TOD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1005 DEF_5_GPRS_QOS_UNLIM DEF_5_YOUTUBE_GPRS_QOS_840 DEF_5_P2P_GPRS_QOS_64 DEF_5_VK_GPRS_QOS_840\n$MONITORING-RULES 1006 DEF_6_GPRS_QOS_UNLIM DEF_6_YOUTUBE_GPRS_QOS_840 DEF_6_P2P_GPRS_QOS_64 DEF_6_VK_GPRS_QOS_840\n$MONITORING-RULES 1007 DEF_7_GPRS_QOS_UNLIM DEF_7_YOUTUBE_GPRS_QOS_840 DEF_7_P2P_GPRS_QOS_64 DEF_7_VK_GPRS_QOS_840\n$MONITORING-RULES 1008 DEF_8_GPRS_QOS_UNLIM DEF_8_YOUTUBE_GPRS_QOS_840 DEF_8_P2P_GPRS_QOS_64 DEF_8_VK_GPRS_QOS_840\n$MONITORING-RULES 1009 DEF_9_GPRS_QOS_UNLIM\n$MONITORING-RULES 1010 DEF_10_GPRS_QOS_UNLIM\n$MONITORING-RULES 1014 DEF_14_GPRS_QOS_UNLIM\n$MONITORING-RULES 1041 DEF_41_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1100 DEF_FREE_GPRS_QOS_UNLIM DEF_100_YOUTUBE_GPRS_QOS_840 DEF_100_GPRS_QOS_UNLIM DEF_100_P2P_GPRS_QOS_64 DEF_100_VK_GPRS_QOS_840\n$MONITORING-RULES 1105 DEF_105_GPRS_QOS_UNLIM\n$MONITORING-RULES 1110 DEF_10110_GPRS_QOS_UNLIM\n$MONITORING-RULES 1120 DEF_NIGHT_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1201 MIU_DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1202 MIU_DEF_2_GPRS_QOS_UNLIM\n$MONITORING-RULES 1203 MIU_DEF_3_GPRS_QOS_UNLIM\n$MONITORING-RULES 1204 MIU_DEF_4_GPRS_QOS_UNLIM\n$MONITORING-RULES 1205 MIU_DEF_5_GPRS_QOS_UNLIM\n$MONITORING-RULES 1221 DEF_INT_TV_GPRS_QOS_UNLIM\n$MONITORING-RULES 1222 DEF_T2TV_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1813 DEF_813_GPRS_QOS_UNLIM DEF_VK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1814 DEF_OK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1815 DEF_FB_GPRS_QOS_UNLIM\n$MONITORING-RULES 1816 DEF_WA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1817 DEF_VIBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1818 DEF_NAVI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1819 DEF_YATAXI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1820 DEF_TAMTAM_GPRS_QOS_UNLIM\n$MONITORING-RULES 1822 DEF_CHIGAP_GPRS_QOS_UNLIM\n$MONITORING-RULES 1823 DEF_YOUTUBE_GPRS_QOS_UNLIM\n$MONITORING-RULES 1824 DEF_FOTOSTRANA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1825 DEF_LOVEMAIL_GPRS_QOS_UNLIM\n$MONITORING-RULES 1826 DEF_LOVEPLANET_GPRS_QOS_UNLIM\n$MONITORING-RULES 1827 DEF_MAMBA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1828 DEF_TEAMO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1830 DEF_YAREKLAMA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1832 DEF_SOS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1833 DEF_INST_GPRS_QOS_UNLIM\n$MONITORING-RULES 1834 DEF_TWITCH_GPRS_QOS_UNLIM\n$MONITORING-RULES 1835 DEF_TINDER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1836 DEF_BADOO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1838 DEF_PTT_GPRS_QOS_UNLIM\n$MONITORING-RULES 1839 DEF_DISCORD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1840 DEF_GMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1841 DEF_APPMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1842 DEF_4SQ_GPRS_QOS_UNLIM\n$MONITORING-RULES 1843 DEF_UBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1844 DEF_ICQ_GPRS_QOS_UNLIM\n\n# $CUSTOM-ATTR defEPSQoS string Default-EPS-Bearer-QoS 1049 10415 vendor-specific incoming ccai | ccau\n\n$3GPP-REL-MINOR 9\n\n# $DEBUG 1\n# $VERBOSE 1"
 			}
 		},
 		{
@@ -677,7 +678,7 @@
 			"instanceId": null,
 			"version": 5,
 			"config": {
-				"config": "# Local PCRF Signaling links \n# PSM/PCEF Diameter attributes\n$ORIGIN-HOST psm02.nsk02.node.epc.mnc020.mcc250.3gppnetwork.org\n$ORIGIN-REALM nsk02.node.epc.mnc020.mcc250.3gppnetwork.org\n$HOST-IP 10.222.37.17\n\n$INSTANCE-ID 1\n$TABLE-EVENT-SUBSCRIPTION-DISABLED 1\n\n$DISABLE-MK-WITH-GSU 1 # This key solve Gx over-repoting problem\n\n# Diameter Gx Dimension\n$TIMEOUT 2\n$JSON-SENDALL-RATE-LIMIT 8000\n# $JSON-SENDALL-RATE-LIMIT-SESSION 8000\n$SENDQUEUE-SIZE 2000000\n$SESSION-TABLE-SIZE 4000000\n$SUBSCRIBER-TABLE-SIZE 8000000\n$MAX-OUTSTANDING-PCRF-MESSAGES 500000\n$MAX-OUTSTANDING-JSON-TASKS 1500000\n$PSM-BUFFER-SIZE 128000000\n$PCRF-BUFFER-SIZE 16000000\n\n#PCRF peers atttributes\n$MAX-CONNECTED-PCRFS 2\n$LOAD-BALANCE 0\n\n$PCRF-ADDRESS 10.223.30.4\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST pcrf01.nsk01.nsk.tele2.epc.mnc020.mcc250.3gppnetwork.org\n$DESTINATION-REALM epc.mnc020.mcc250.3gppnetwork.org\n\n$PCRF-ADDRESS 10.222.30.4\n$PSM-BIND-ADDRESS 10.222.37.17\n$DESTINATION-HOST pcrf02.nsk02.nsk.tele2.epc.mnc020.mcc250.3gppnetwork.org\n$DESTINATION-REALM epc.mnc020.mcc250.3gppnetwork.org\n\n$SESSION-FLUSH-ENABLED 1\n#$ATTR-SESSION-FLUSH: References a field in the Model holding a timestamp. The timestamp should be used by a time\n$ATTR-SESSION-FLUSH gxFlushTimeStamp\n#Set $ATTR-SESSION-FLUSH = now + 10000\n$SESSION-FLUSH-TIME 10\n\n$OPENING-CONDITION 1\n$ATTR-OPENING-CONDITION gxOpenConditionLocal\n\n$ATTR-PCRF pcrfAddress\n$ATTR-SESSION-ID ccSessionId\n$GX-FAILOVER-MODE 0\n##disable 13-02-2019 \n#$MAX-RETRIES 1\n\n#Dynamic Diameter Gx attributes cca-i -> ccr-u mapping\n$ATTR-DEST-HOST gxOriginHost\n$BIND-TO-HOST 0\n$ATTR-DEST-REALM gxOriginRealm\n$BIND-TO-REALM 1\n\n$SESSION-SCHEMA-NAME session\n$SUBSCRIBER-SCHEMA-NAME subscriber\n\n$MONITORING-MAX-ENTRIES 48\n# Subscribers Session Attributes\n$ATTR-IMSI subscriberId\n$ATTR-MSISDN msisdn\n\n$ATTR-COUNTERS gxCounters\n$ATTR-RAT rat\n# $ATTR-3GPP-RAT rat3gpp\n$ATTR-IP-CAN_STATIC integer 5\n$ATTR-IPV4 sessionId\n$ATTR-CC-REQUEST-COUNTER ccCounter\n$ATTR-FLAGS flags\n$ATTR-RESULT pcrfResultLocal\n$ATTR-RULE gxRules\n$ATTR-RULE-NAME ruleName\n$ATTR-RULE-ACTIVATION-TIME activationTime\n$ATTR-RULE-DEACTIVATION-TIME deactivationTime\n$ATTR-RULE-ACTIVATED activated\n$ATTR-3GPP-SGSN sgsn\n$ATTR-3GPP-SGSN-MCC-MNC sgsnmccmnc\n$ATTR-USER-LOCATION-INFO uli\n$ATTR-CALLED-STATION-ID session.apn\n$ATTR-IMEISV imeisv\n$CUSTOM-ATTR session.ueTimeZone int16 3GPP-MS-TimeZone 23 10415 vendor-specific | mandatory outgoing ccri | ccru\n$CUSTOM-ATTR gxCcCounter int64 gxCcCounter 1001 11821 vendor-specific outgoing ccru\n\n$ATTR-APN-AGGREGATE-MAX-BITRATE-UL shapingUL\n$ATTR-APN-AGGREGATE-MAX-BITRATE-DL shapingDL\n\n# $ATTR-RULE-MAX-REQUESTED-BW-UL shapingUL\n# $ATTR-RULE-MAX-REQUESTED-BW-DL shapingDL\n\n# comment by sshirokov 20190924\n#$EVENT-RAT-TOGGLE 1\n#$EVENT-SGSN-TOGGLE 1\n#$EVENT-RAT-REPORT-UMI 1\n\n# Tele2 PCC Rule to MK mapping for Gx\n\n$MONITORING-RULES 1001 DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1002 DEF_2_GPRS_QOS_UNLIM DEF_2_YOUTUBE_GPRS_QOS_840 DEF_2_P2P_GPRS_QOS_64 DEF_2_VK_GPRS_QOS_840\n$MONITORING-RULES 1003 DEF_3_GPRS_QOS_UNLIM DEF_3_YOUTUBE_GPRS_QOS_840 DEF_3_P2P_GPRS_QOS_64 DEF_VK_LIM_GPRS_QOS_UNLIM DEF_3_VK_GPRS_QOS_840 DEF_BLOCK_TETHERING DEF_BLOCK_TABLET BEELINE_GPRS_QOS_LIM MNC_STEP_GPRS_QOS_BLOCK\n$MONITORING-RULES 1004 DEF_4_GPRS_QOS_UNLIM DEF_4_YOUTUBE_GPRS_QOS_840 DEF_4_P2P_GPRS_QOS_64 DEF_4_VK_GPRS_QOS_840 DEF_WEEKEND_GPRS_QOS_UNLIM DEF_WHITELIST DEF_BLACKLIST DEF_LIST_TAC_GPRS_QOS DEF_TOD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1005 DEF_5_GPRS_QOS_UNLIM DEF_5_YOUTUBE_GPRS_QOS_840 DEF_5_P2P_GPRS_QOS_64 DEF_5_VK_GPRS_QOS_840\n$MONITORING-RULES 1006 DEF_6_GPRS_QOS_UNLIM DEF_6_YOUTUBE_GPRS_QOS_840 DEF_6_P2P_GPRS_QOS_64 DEF_6_VK_GPRS_QOS_840\n$MONITORING-RULES 1007 DEF_7_GPRS_QOS_UNLIM DEF_7_YOUTUBE_GPRS_QOS_840 DEF_7_P2P_GPRS_QOS_64 DEF_7_VK_GPRS_QOS_840\n$MONITORING-RULES 1008 DEF_8_GPRS_QOS_UNLIM DEF_8_YOUTUBE_GPRS_QOS_840 DEF_8_P2P_GPRS_QOS_64 DEF_8_VK_GPRS_QOS_840\n$MONITORING-RULES 1009 DEF_9_GPRS_QOS_UNLIM\n$MONITORING-RULES 1010 DEF_10_GPRS_QOS_UNLIM\n$MONITORING-RULES 1014 DEF_14_GPRS_QOS_UNLIM\n$MONITORING-RULES 1041 DEF_41_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1100 DEF_FREE_GPRS_QOS_UNLIM DEF_100_YOUTUBE_GPRS_QOS_840 DEF_100_GPRS_QOS_UNLIM DEF_100_P2P_GPRS_QOS_64 DEF_100_VK_GPRS_QOS_840\n$MONITORING-RULES 1105 DEF_105_GPRS_QOS_UNLIM\n$MONITORING-RULES 1110 DEF_10110_GPRS_QOS_UNLIM\n$MONITORING-RULES 1120 DEF_NIGHT_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1201 MIU_DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1202 MIU_DEF_2_GPRS_QOS_UNLIM\n$MONITORING-RULES 1203 MIU_DEF_3_GPRS_QOS_UNLIM\n$MONITORING-RULES 1204 MIU_DEF_4_GPRS_QOS_UNLIM\n$MONITORING-RULES 1205 MIU_DEF_5_GPRS_QOS_UNLIM\n$MONITORING-RULES 1221 DEF_INT_TV_GPRS_QOS_UNLIM\n$MONITORING-RULES 1222 DEF_T2TV_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1813 DEF_813_GPRS_QOS_UNLIM DEF_VK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1814 DEF_OK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1815 DEF_FB_GPRS_QOS_UNLIM\n$MONITORING-RULES 1816 DEF_WA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1817 DEF_VIBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1818 DEF_NAVI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1819 DEF_YATAXI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1820 DEF_TAMTAM_GPRS_QOS_UNLIM\n$MONITORING-RULES 1822 DEF_CHIGAP_GPRS_QOS_UNLIM\n$MONITORING-RULES 1823 DEF_YOUTUBE_GPRS_QOS_UNLIM\n$MONITORING-RULES 1824 DEF_FOTOSTRANA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1825 DEF_LOVEMAIL_GPRS_QOS_UNLIM\n$MONITORING-RULES 1826 DEF_LOVEPLANET_GPRS_QOS_UNLIM\n$MONITORING-RULES 1827 DEF_MAMBA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1828 DEF_TEAMO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1830 DEF_YAREKLAMA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1832 DEF_SOS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1833 DEF_INST_GPRS_QOS_UNLIM\n$MONITORING-RULES 1834 DEF_TWITCH_GPRS_QOS_UNLIM\n$MONITORING-RULES 1835 DEF_TINDER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1836 DEF_BADOO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1838 DEF_PTT_GPRS_QOS_UNLIM\n$MONITORING-RULES 1839 DEF_DISCORD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1840 DEF_GMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1841 DEF_APPMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1842 DEF_4SQ_GPRS_QOS_UNLIM\n$MONITORING-RULES 1843 DEF_UBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1844 DEF_ICQ_GPRS_QOS_UNLIM\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\n\n# $CUSTOM-ATTR defEPSQoS string Default-EPS-Bearer-QoS 1049 10415 vendor-specific incoming ccai | ccau\n\n$3GPP-REL-MINOR 9\n\n# $DEBUG 1\n# $VERBOSE 1"
+				"config": "# Local PCRF Signaling links \n# PSM/PCEF Diameter attributes\n$ORIGIN-HOST psm01.nin01.node.epc.mnc020.mcc250.3gppnetwork.org\n$ORIGIN-REALM nin01.node.epc.mnc020.mcc250.3gppnetwork.org\n$HOST-IP 10.228.249.1\n\n$INSTANCE-ID 1\n$TABLE-EVENT-SUBSCRIPTION-DISABLED 1\n\n$DISABLE-MK-WITH-GSU 1 # This key solve Gx over-repoting problem\n\n# Diameter Gx Dimension\n$TIMEOUT 2\n$JSON-SENDALL-RATE-LIMIT 8000\n# $JSON-SENDALL-RATE-LIMIT-SESSION 8000\n$SENDQUEUE-SIZE 2000000\n$SESSION-TABLE-SIZE 4000000\n$SUBSCRIBER-TABLE-SIZE 8000000\n$MAX-OUTSTANDING-PCRF-MESSAGES 500000\n$MAX-OUTSTANDING-JSON-TASKS 1500000\n$PSM-BUFFER-SIZE 128000000\n$PCRF-BUFFER-SIZE 16000000\n\n#PCRF peers atttributes\n$MAX-CONNECTED-PCRFS 2\n$LOAD-BALANCE 0\n\n$PCRF-ADDRESS 10.228.9.2\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST pcrf01.nin01.nin.tele2.epc.mnc020.mcc250.3gppnetwork.org\n$DESTINATION-REALM epc.mnc020.mcc250.3gppnetwork.org\n\n$PCRF-ADDRESS 10.228.139.2\n$PSM-BIND-ADDRESS 10.228.249.1\n$DESTINATION-HOST pcrf02.nin02.nin.tele2.epc.mnc020.mcc250.3gppnetwork.org\n$DESTINATION-REALM epc.mnc020.mcc250.3gppnetwork.org\n\n$SESSION-FLUSH-ENABLED 1\n#$ATTR-SESSION-FLUSH: References a field in the Model holding a timestamp. The timestamp should be used by a time\n$ATTR-SESSION-FLUSH gxFlushTimeStamp\n#Set $ATTR-SESSION-FLUSH = now + 10000\n$SESSION-FLUSH-TIME 10\n\n$OPENING-CONDITION 1\n$ATTR-OPENING-CONDITION gxOpenConditionLocal\n\n$ATTR-PCRF pcrfAddress\n$ATTR-SESSION-ID ccSessionId\n$GX-FAILOVER-MODE 0\n##disable 13-02-2019 \n#$MAX-RETRIES 1\n\n#Dynamic Diameter Gx attributes cca-i -> ccr-u mapping\n$ATTR-DEST-HOST gxOriginHost\n$BIND-TO-HOST 0\n$ATTR-DEST-REALM gxOriginRealm\n$BIND-TO-REALM 1\n\n$SESSION-SCHEMA-NAME session\n$SUBSCRIBER-SCHEMA-NAME subscriber\n\n$MONITORING-MAX-ENTRIES 48\n# Subscribers Session Attributes\n$ATTR-IMSI subscriberId\n$ATTR-MSISDN msisdn\n\n$ATTR-COUNTERS gxCounters\n$ATTR-RAT rat\n# $ATTR-3GPP-RAT rat3gpp\n$ATTR-IP-CAN_STATIC integer 5\n$ATTR-IPV4 sessionId\n$ATTR-CC-REQUEST-COUNTER ccCounter\n$ATTR-FLAGS flags\n$ATTR-RESULT pcrfResultLocal\n$ATTR-RULE gxRules\n$ATTR-RULE-NAME ruleName\n$ATTR-RULE-ACTIVATION-TIME activationTime\n$ATTR-RULE-DEACTIVATION-TIME deactivationTime\n$ATTR-RULE-ACTIVATED activated\n$ATTR-3GPP-SGSN sgsn\n$ATTR-3GPP-SGSN-MCC-MNC sgsnmccmnc\n$ATTR-USER-LOCATION-INFO uli\n$ATTR-CALLED-STATION-ID session.apn\n$ATTR-IMEISV imeisv\n$CUSTOM-ATTR session.ueTimeZone int16 3GPP-MS-TimeZone 23 10415 vendor-specific | mandatory outgoing ccri | ccru\n$CUSTOM-ATTR gxCcCounter int64 gxCcCounter 1001 11821 vendor-specific outgoing ccru\n\n$ATTR-APN-AGGREGATE-MAX-BITRATE-UL shapingUL\n$ATTR-APN-AGGREGATE-MAX-BITRATE-DL shapingDL\n\n# $ATTR-RULE-MAX-REQUESTED-BW-UL shapingUL\n# $ATTR-RULE-MAX-REQUESTED-BW-DL shapingDL\n\n# comment by sshirokov 20190924\n#$EVENT-RAT-TOGGLE 1\n#$EVENT-SGSN-TOGGLE 1\n#$EVENT-RAT-REPORT-UMI 1\n\n# Tele2 PCC Rule to MK mapping for Gx\n\n$MONITORING-RULES 1001 DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1002 DEF_2_GPRS_QOS_UNLIM DEF_2_YOUTUBE_GPRS_QOS_840 DEF_2_P2P_GPRS_QOS_64 DEF_2_VK_GPRS_QOS_840\n$MONITORING-RULES 1003 DEF_3_GPRS_QOS_UNLIM DEF_3_YOUTUBE_GPRS_QOS_840 DEF_3_P2P_GPRS_QOS_64 DEF_VK_LIM_GPRS_QOS_UNLIM DEF_3_VK_GPRS_QOS_840 DEF_BLOCK_TETHERING DEF_BLOCK_TABLET BEELINE_GPRS_QOS_LIM MNC_STEP_GPRS_QOS_BLOCK\n$MONITORING-RULES 1004 DEF_4_GPRS_QOS_UNLIM DEF_4_YOUTUBE_GPRS_QOS_840 DEF_4_P2P_GPRS_QOS_64 DEF_4_VK_GPRS_QOS_840 DEF_WEEKEND_GPRS_QOS_UNLIM DEF_WHITELIST DEF_BLACKLIST DEF_LIST_TAC_GPRS_QOS DEF_TOD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1005 DEF_5_GPRS_QOS_UNLIM DEF_5_YOUTUBE_GPRS_QOS_840 DEF_5_P2P_GPRS_QOS_64 DEF_5_VK_GPRS_QOS_840\n$MONITORING-RULES 1006 DEF_6_GPRS_QOS_UNLIM DEF_6_YOUTUBE_GPRS_QOS_840 DEF_6_P2P_GPRS_QOS_64 DEF_6_VK_GPRS_QOS_840\n$MONITORING-RULES 1007 DEF_7_GPRS_QOS_UNLIM DEF_7_YOUTUBE_GPRS_QOS_840 DEF_7_P2P_GPRS_QOS_64 DEF_7_VK_GPRS_QOS_840\n$MONITORING-RULES 1008 DEF_8_GPRS_QOS_UNLIM DEF_8_YOUTUBE_GPRS_QOS_840 DEF_8_P2P_GPRS_QOS_64 DEF_8_VK_GPRS_QOS_840\n$MONITORING-RULES 1009 DEF_9_GPRS_QOS_UNLIM\n$MONITORING-RULES 1010 DEF_10_GPRS_QOS_UNLIM\n$MONITORING-RULES 1014 DEF_14_GPRS_QOS_UNLIM\n$MONITORING-RULES 1041 DEF_41_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1100 DEF_FREE_GPRS_QOS_UNLIM DEF_100_YOUTUBE_GPRS_QOS_840 DEF_100_GPRS_QOS_UNLIM DEF_100_P2P_GPRS_QOS_64 DEF_100_VK_GPRS_QOS_840\n$MONITORING-RULES 1105 DEF_105_GPRS_QOS_UNLIM\n$MONITORING-RULES 1110 DEF_10110_GPRS_QOS_UNLIM\n$MONITORING-RULES 1120 DEF_NIGHT_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1201 MIU_DEF_1_GPRS_QOS_UNLIM\n$MONITORING-RULES 1202 MIU_DEF_2_GPRS_QOS_UNLIM\n$MONITORING-RULES 1203 MIU_DEF_3_GPRS_QOS_UNLIM\n$MONITORING-RULES 1204 MIU_DEF_4_GPRS_QOS_UNLIM\n$MONITORING-RULES 1205 MIU_DEF_5_GPRS_QOS_UNLIM\n$MONITORING-RULES 1221 DEF_INT_TV_GPRS_QOS_UNLIM\n$MONITORING-RULES 1222 DEF_T2TV_GPRS_QOS_UNLIM\n\n$MONITORING-RULES 1813 DEF_813_GPRS_QOS_UNLIM DEF_VK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1814 DEF_OK_GPRS_QOS_UNLIM\n$MONITORING-RULES 1815 DEF_FB_GPRS_QOS_UNLIM\n$MONITORING-RULES 1816 DEF_WA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1817 DEF_VIBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1818 DEF_NAVI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1819 DEF_YATAXI_GPRS_QOS_UNLIM\n$MONITORING-RULES 1820 DEF_TAMTAM_GPRS_QOS_UNLIM\n$MONITORING-RULES 1822 DEF_CHIGAP_GPRS_QOS_UNLIM\n$MONITORING-RULES 1823 DEF_YOUTUBE_GPRS_QOS_UNLIM\n$MONITORING-RULES 1824 DEF_FOTOSTRANA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1825 DEF_LOVEMAIL_GPRS_QOS_UNLIM\n$MONITORING-RULES 1826 DEF_LOVEPLANET_GPRS_QOS_UNLIM\n$MONITORING-RULES 1827 DEF_MAMBA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1828 DEF_TEAMO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1830 DEF_YAREKLAMA_GPRS_QOS_UNLIM\n$MONITORING-RULES 1832 DEF_SOS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1833 DEF_INST_GPRS_QOS_UNLIM\n$MONITORING-RULES 1834 DEF_TWITCH_GPRS_QOS_UNLIM\n$MONITORING-RULES 1835 DEF_TINDER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1836 DEF_BADOO_GPRS_QOS_UNLIM\n$MONITORING-RULES 1838 DEF_PTT_GPRS_QOS_UNLIM\n$MONITORING-RULES 1839 DEF_DISCORD_GPRS_QOS_UNLIM\n$MONITORING-RULES 1840 DEF_GMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1841 DEF_APPMAPS_GPRS_QOS_UNLIM\n$MONITORING-RULES 1842 DEF_4SQ_GPRS_QOS_UNLIM\n$MONITORING-RULES 1843 DEF_UBER_GPRS_QOS_UNLIM\n$MONITORING-RULES 1844 DEF_ICQ_GPRS_QOS_UNLIM\n\n# $CUSTOM-ATTR defEPSQoS string Default-EPS-Bearer-QoS 1049 10415 vendor-specific incoming ccai | ccau\n\n$3GPP-REL-MINOR 9\n\n# $DEBUG 1\n# $VERBOSE 1"
 			}
 		},
 		{
@@ -800,7 +801,7 @@
 														"set",
 														{
 															"varName": "callDuration",
-															"expression": "int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0)))"
+															"expression": "int((int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0))))/1000)"
 														}
 													],
 													[
@@ -1200,7 +1201,7 @@
 														"set",
 														{
 															"varName": "callDuration",
-															"expression": "int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0)))"
+															"expression": "int((int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0))))/1000)"
 														}
 													],
 													[
@@ -1983,7 +1984,7 @@
 														"set",
 														{
 															"varName": "callDuration",
-															"expression": "int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0)))"
+															"expression": "int((int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0))))/1000)"
 														}
 													],
 													[
@@ -2382,7 +2383,7 @@
 														"set",
 														{
 															"varName": "callDuration",
-															"expression": "int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0)))"
+															"expression": "int((int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0))))/1000)"
 														}
 													],
 													[
@@ -3031,7 +3032,7 @@
 														"set",
 														{
 															"varName": "callDuration",
-															"expression": "int(first(c.lastUsageTime, timestamp(0))) - int(first(c.firstUsageTime, timestamp(0)))"
+															"expression": "int((int(first(now, timestamp(0))) - int(first(c.cdrOpenTime, timestamp(0))))/1000)"
 														}
 													],
 													[
@@ -3362,12 +3363,12 @@
 			"config": {
 				"nodes": [
 					{
-						"hostName": "10.222.37.162",
+						"hostName": "10.228.249.161",
 						"serviceOrPort": "",
 						"useDirectConnection": false
 					},
 					{
-						"hostName": "10.223.37.162",
+						"hostName": "10.228.250.161",
 						"serviceOrPort": "",
 						"useDirectConnection": false
 					}
@@ -3439,7 +3440,7 @@
 					"[x.OS for x in table::EQUIPMENT_TELE2]",
 					"[x.Country for x in table::MCCMNC2Network]"
 				],
-				"identity": "psm02",
+				"identity": "psm01",
 				"schemas": [
 					{
 						"groupFilter": "",
@@ -4402,8 +4403,8 @@
 								"deltaInVarName": "DEF_UBER_GPRS_QOS_UNLIMIn"
 							},
 							{
-								"repeatAfterBytes": 32768,
-								"repeatAfterMs": 60000,
+								"repeatAfterBytes": 0,
+								"repeatAfterMs": 0,
 								"match": [
 									"/ShapingObjects/T2_RG2_FirstUpdate"
 								],
@@ -4418,6 +4419,15 @@
 								],
 								"deltaOutVarName": "DEF_MAILRUVIDEO_GPRS_QOS_UNLIMOut",
 								"deltaInVarName": "DEF_MAILRUVIDEO_GPRS_QOS_UNLIMIn"
+							},
+							{
+								"repeatAfterBytes": 20971520,
+								"repeatAfterMs": 0,
+								"match": [
+									"/ShapingObjects/DEF_TELEGRAM_GPRS_QOS_UNLIM"
+								],
+								"deltaOutVarName": "DEF_TELEGRAM_GPRS_QOS_UNLIMOut",
+								"deltaInVarName": "DEF_TELEGRAM_GPRS_QOS_UNLIMIn"
 							}
 						],
 						"idleTimeout": 600,
@@ -25301,6 +25311,120 @@
 														[
 															"if",
 															{
+																"expression": "DEF_TELEGRAM_GPRS_QOS_UNLIMIn + DEF_TELEGRAM_GPRS_QOS_UNLIMOut > 0",
+																"elseStatements": [],
+																"statements": [
+																	[
+																		"getObjectInAttr",
+																		{
+																			"aidExpression": "\"10846\"",
+																			"elseStatements": [
+																				[
+																					"setObjectInAttr",
+																					{
+																						"aidExpression": "\"10846\"",
+																						"elseStatements": [],
+																						"objectVarName": "currentSession",
+																						"resultVarName": "c",
+																						"attributeName": "counters",
+																						"statements": [
+																							[
+																								"setAttribute",
+																								{
+																									"elseStatements": [],
+																									"expression": "now",
+																									"objectVarName": "c",
+																									"attributeName": "cdrOpenTime",
+																									"statements": []
+																								}
+																							],
+																							[
+																								"setAttribute",
+																								{
+																									"elseStatements": [],
+																									"expression": "c.incomingBytes + DEF_TELEGRAM_GPRS_QOS_UNLIMIn",
+																									"objectVarName": "c",
+																									"attributeName": "incomingBytes",
+																									"statements": []
+																								}
+																							],
+																							[
+																								"setAttribute",
+																								{
+																									"elseStatements": [],
+																									"expression": "c.outgoingBytes + DEF_TELEGRAM_GPRS_QOS_UNLIMOut",
+																									"objectVarName": "c",
+																									"attributeName": "outgoingBytes",
+																									"statements": []
+																								}
+																							],
+																							[
+																								"setAttribute",
+																								{
+																									"elseStatements": [],
+																									"expression": "now",
+																									"objectVarName": "c",
+																									"attributeName": "firstUsageTime",
+																									"statements": []
+																								}
+																							],
+																							[
+																								"setAttribute",
+																								{
+																									"elseStatements": [],
+																									"expression": "now",
+																									"objectVarName": "c",
+																									"attributeName": "lastUsageTime",
+																									"statements": []
+																								}
+																							]
+																						]
+																					}
+																				]
+																			],
+																			"objectVarName": "currentSession",
+																			"resultVarName": "c",
+																			"attributeName": "counters",
+																			"statements": [
+																				[
+																					"setAttribute",
+																					{
+																						"elseStatements": [],
+																						"expression": "c.incomingBytes + DEF_TELEGRAM_GPRS_QOS_UNLIMIn",
+																						"objectVarName": "c",
+																						"attributeName": "incomingBytes",
+																						"statements": []
+																					}
+																				],
+																				[
+																					"setAttribute",
+																					{
+																						"elseStatements": [],
+																						"expression": "c.outgoingBytes + DEF_TELEGRAM_GPRS_QOS_UNLIMOut",
+																						"objectVarName": "c",
+																						"attributeName": "outgoingBytes",
+																						"statements": []
+																					}
+																				],
+																				[
+																					"setAttribute",
+																					{
+																						"elseStatements": [],
+																						"expression": "now",
+																						"objectVarName": "c",
+																						"attributeName": "lastUsageTime",
+																						"statements": []
+																					}
+																				]
+																			]
+																		}
+																	]
+																]
+															}
+														],
+														[
+															"if",
+															{
 																"expression": "T2_RG5In + T2_RG5Out > 0",
 																"elseStatements": [],
 																"statements": [
@@ -27162,7 +27286,7 @@
 								"contentType": ""
 							},
 							{
-								"mapping": "\"psm02\"",
+								"mapping": "\"psm01\"",
 								"name": "psmIdentity",
 								"sticky": false,
 								"keyType": "not_in_key",
@@ -27200,7 +27324,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.193",
+				"hostName": "10.228.249.193",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27212,7 +27336,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.194",
+				"hostName": "10.228.249.194",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27224,7 +27348,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.195",
+				"hostName": "10.228.249.195",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27236,7 +27360,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.196",
+				"hostName": "10.228.249.196",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27248,7 +27372,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.197",
+				"hostName": "10.228.249.197",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27260,7 +27384,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.198",
+				"hostName": "10.228.249.198",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27272,7 +27396,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.199",
+				"hostName": "10.228.249.199",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27284,7 +27408,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.200",
+				"hostName": "10.228.249.200",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27296,7 +27420,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.201",
+				"hostName": "10.228.249.201",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27308,7 +27432,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.202",
+				"hostName": "10.228.249.202",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27320,7 +27444,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.203",
+				"hostName": "10.228.249.203",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27332,7 +27456,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.204",
+				"hostName": "10.228.249.204",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27344,7 +27468,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.205",
+				"hostName": "10.228.250.193",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27356,7 +27480,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.206",
+				"hostName": "10.228.250.194",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27368,7 +27492,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.207",
+				"hostName": "10.228.250.195",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27380,7 +27504,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.222.37.208",
+				"hostName": "10.228.250.196",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27392,7 +27516,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.193",
+				"hostName": "10.228.250.197",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27404,7 +27528,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.194",
+				"hostName": "10.228.250.198",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27416,7 +27540,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.195",
+				"hostName": "10.228.250.199",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27428,7 +27552,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.196",
+				"hostName": "10.228.250.200",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27440,7 +27564,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.197",
+				"hostName": "10.228.250.201",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27452,7 +27576,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.198",
+				"hostName": "10.228.250.202",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27464,7 +27588,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.199",
+				"hostName": "10.228.250.203",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -27476,103 +27600,7 @@
 			"instanceId": null,
 			"version": 4,
 			"config": {
-				"hostName": "10.223.37.200",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.201",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.202",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.203",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.204",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.205",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.206",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.207",
-				"serviceOrPort": "",
-				"useDirectConnection": false,
-				"startupState": "enabled",
-				"group": ""
-			}
-		},
-		{
-			"componentId": "psm.provisionerng.host",
-			"instanceId": null,
-			"version": 4,
-			"config": {
-				"hostName": "10.223.37.208",
+				"hostName": "10.228.250.204",
 				"serviceOrPort": "",
 				"useDirectConnection": false,
 				"startupState": "enabled",
@@ -29676,19 +29704,24 @@
 								"description": "Amount of sessions with non zero Gx buffers"
 							},
 							{
-								"expression": "gyState != \"closed\" or gyState != \"new\" and gyServicesStates[2].accessStatus == \"granted\"",
+								"expression": "(gyState != \"closed\" or gyState != \"new\") and gyServicesStates[2].accessStatus == \"granted\"",
 								"name": "RG2Granted",
 								"description": "sessions with granted RG2"
 							},
 							{
-								"expression": "gyState != \"closed\" or gyState != \"new\" and gyServicesStates[2].accessStatus == \"redirected\"",
+								"expression": "(gyState != \"closed\" or gyState != \"new\") and gyServicesStates[2].accessStatus == \"redirected\"",
 								"name": "RG2Redirected",
 								"description": "sessions with redirected RG2"
 							},
 							{
-								"expression": "gyState != \"closed\" or gyState != \"new\"",
+								"expression": "gyState != \"closed\" and gyState != \"new\"",
 								"name": "gySessions",
 								"description": "Open gy sessions"
+							},
+							{
+								"expression": "ActualAPN == true and sessionStopTrigger == true",
+								"name": "StopTrigger",
+								"description": "sessions with stop trigger = true"
 							}
 						],
 						"name": "session",
@@ -30372,7 +30405,7 @@
 							[
 								"normal",
 								{
-									"defaultValue": "psm02.nsk.node.epc.mnc020.mcc250.3gppnetwork.org",
+									"defaultValue": "psm01.nin.node.epc.mnc020.mcc250.3gppnetwork.org",
 									"visibleToUpdateTime": true,
 									"name": "psmOriginHost",
 									"typeId": 1512066365095
@@ -30596,7 +30629,7 @@
 								"typeId": 1569932413726
 							},
 							{
-								"defaultValue": "psm02.nsk",
+								"defaultValue": "psm01.nin",
 								"name": "nodeId",
 								"typeId": 1511858245752
 							},
@@ -31530,7 +31563,7 @@
 					"severity": "off",
 					"fields": []
 				},
-				"hostName": "10.222.37.74",
+				"hostName": "10.228.249.65",
 				"vendorDecodingMap": [],
 				"port": 1813,
 				"transformer": {
@@ -32727,7 +32760,7 @@
 				],
 				"secrets": [
 					{
-						"secret": "tele2",
+						"secret": "xvqdvqkbfq",
 						"network": "0.0.0.0/0"
 					}
 				],

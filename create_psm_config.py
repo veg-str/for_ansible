@@ -1,4 +1,8 @@
-import json, openpyxl, re, jinja2, datetime
+import json
+import openpyxl
+import re
+import jinja2
+import datetime
 from pprint import pprint
 
 ip_plan = 'project_files\\Tele2_IP_plan_v2.02.xlsx'
@@ -11,6 +15,7 @@ env = jinja2.Environment(
 )
 
 mr = ['EKT', 'NIN', 'NSK']
+# mr = ['NIN']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'
@@ -228,7 +233,7 @@ for region in mr:
     psms = psm_list(region)
     pre_list = get_pre_list(region)
     radius_secret = get_radius_secret(region)
-    with open(conf_template, "r") as file:
+    with open(conf_template, "r", newline='\n') as file:
         config_template = json.load(file)
         for srv in srv_list:
             config_source = prepare_template(config_template)
@@ -273,5 +278,5 @@ for region in mr:
             # **** Writing new config to JSON file ****
             new_config_file = new_conf_path + srv.replace('.', '_') + '_' + str(
                 datetime.datetime.today().isoformat(sep='_', timespec='minutes')).replace(':', '_') + '.json'
-            with open(new_config_file, 'w') as new_cfg:
+            with open(new_config_file, 'w', newline='\n') as new_cfg:
                 json.dump(config_source, new_cfg)
