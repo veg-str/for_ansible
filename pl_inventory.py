@@ -1,9 +1,10 @@
-import openpyxl, re
+import openpyxl
+import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.03.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
 inventory_file = 'c:\\temp\\inventory\\packetlogick'
 
-mr = ['NIN']
+mr = ['MOS', 'NIN', 'EKT', 'NSK']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
@@ -11,81 +12,118 @@ ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 wb = openpyxl.load_workbook(ip_plan, True)
 
 
-def site_groups(region, site):
+def get_sheets_list(region):
+    ws_list = list(filter(lambda i: re.search('^'+region, i), wb.sheetnames))
+    return ws_list
+
+
+def domain_groups(region, site):
     members = []
-    for srv_type in base_srv_types:
-        members.append('pl_' + region.lower() + site + '_' + srv_type)
-    groups = {'name': '[pl_' + region.lower() + site + ':children]', 'members': members}
+    for type in base_srv_types:
+        members.append(f'pl_{region.lower()}{site[-1]}_d{dom_num}_{type}')
+    groups = {'name': f'[pl_{region.lower()}{site[-1]}_d{dom_num}:children]', 'members': members}
     return groups
 
 
-def mr_groups(region, srv_type):
+def site_groups(region, sheets, site):
+    groups = []
+    for type in base_srv_types:
+        members = []
+        i = 0
+        while i < len(sheets):
+            members.append(f'pl_{region.lower()}{site[-1]}_d{i+1}_{type}')
+            i = i + 1
+        groups.append({'name': f'[pl_{region.lower()}{site[-1]}_{type}:children]', 'members': members})
+    return groups
+
+
+def mr_groups(region, type, sites):
     members = []
-    for i in ['1', '2']:
-        members.append('pl_' + region.lower() + i + '_' + srv_type)
-    group = {'name':'[pl_' + region.lower() + '_' + srv_type + ':children]', 'members': members}
+    for site in sorted(sites):
+        members.append(f'pl_{region.lower()}{site[-1]}_{type}')
+    group = {'name':f'[pl_{region.lower()}_{type}:children]', 'members': members}
     return group
 
 
-def global_group(srv_type):
+def global_group(type):
     members = []
     for region in mr:
-        members.append('pl_' + region.lower() + '_' + srv_type)
-    group = {'name': '[pl_' + srv_type + ':children]', 'members': members}
+        members.append(f'pl_{region.lower()}_{type}')
+    group = {'name': f'[{type}:children]', 'members': members}
     return group
 
 
-def pre_prov_ip(srv):
+def pre_prov_ip(srv, srv_list):
     prov_ip = ''
     for row in srv_list:
-        if row['hostname'] == srv and row['vlan'] == 'Provisioning':
+        if row['hostname'] == srv['hostname'] and row['vlan'] == 'Provisioning':
             prov_ip = row['ip']
     return prov_ip
 
 
-def pic_dadafeed_ip(srv):
+def pic_dadafeed_ip(srv, srv_list):
     df_ip = ''
     for row in srv_list:
-        if row['hostname'] == srv and row['vlan'] == 'DataFeed':
+        if row['hostname'] == srv['hostname'] and row['vlan'] == 'DataFeed':
             df_ip = row['ip']
     return df_ip
 
 
-def rows_to_dict(region):
-    kvm_list = []
-    ws = wb[region]
+def rows_to_dict(sheet):
+    rows = []
+    ws = wb[sheet]
     for row in ws.iter_rows():
-        if str(row[1].value)[:-20] in base_srv_types:
-            kvm_list.append({'hostname': row[1].value, 'vlan': row[3].value, 'ip': row[5].value, 'site': row[6].value})
-    return kvm_list
+        if re.search("^\D{1,4}", str(row[1].value)).group(0) in base_srv_types:
+            rows.append({
+                'hostname': row[1].value,
+                'vlan': row[3].value,
+                'ip': row[5].value,
+                'site': row[6].value})
+    return rows
 
 
 with open(inventory_file, 'w', newline='\n') as f:
     f.write('# List of PacketLogic VMs\n\n')
     for region in mr:
-        srv_list = rows_to_dict(region)
-        print('Collecting data about VM in ' + region)
-        f.write('# ' + region + '\n')
-        for i in ['1','2']:
-            for srv_type in base_srv_types:
-                f.write('[pl_' + region.lower() + i + '_' + srv_type + ']\n')
-                for row in srv_list:
-                    if row['vlan'] == 'vm_Mgmt' and row['site'][-1] == i and re.search("^" + srv_type, row['hostname']):
-                        f.write(row['hostname'][:-13] + ' ansible_host=' + row['ip']) # + '\n')
-                        if srv_type == 'pre':
-                            f.write(' provisioning_ip=' + pre_prov_ip(row['hostname']) + '\n')
-                        elif srv_type in ['pic', 'apic']:
-                            f.write(' datafeed_ip=' + pic_dadafeed_ip(row['hostname']) + '\n')
-                        else:
-                            f.write('\n')
+        print(f'Collecting data about VM in {region}')
+        sheet_list = get_sheets_list(region)
+        mr_sites = set()
+        for sheet in sheet_list:
+            dom_num = sheet_list.index(sheet) + 1
+            f.write(f'# Domain {dom_num}\n')
+            vm_list = rows_to_dict(sheet)
+            sites = sorted(set(map(lambda i: i['site'], vm_list)))
+            for site in sites:
+                for type in base_srv_types:
+                    f.write(f'[pl_{region.lower()}{site[-1]}_d{dom_num}_{type}]\n')
+                    for vm in vm_list:
+                        if (vm['vlan'] == 'vm_Mgmt' and
+                                vm['site'] == site and
+                                re.search("^" + type, vm['hostname'])):
+                            f.write(f'{vm["hostname"][:-13]} ansible_host={vm["ip"]}')
+                            if type == 'pre':
+                                f.write(f' provisioning_ip={pre_prov_ip(vm, vm_list)}\n')
+                            elif type in ['pic', 'apic']:
+                                f.write(f' datafeed_ip={pic_dadafeed_ip(vm, vm_list)}\n')
+                            else:
+                                f.write('\n')
+                    f.write('\n')
+                group = domain_groups(region, site)
+                f.write(f'{group["name"]}\n')
+                for member in group['members']:
+                    f.write(f'{member}\n')
                 f.write('\n')
-            group = site_groups(region, i)
-            f.write(group['name'] + '\n')
-            for member in group['members']:
-                f.write(member + '\n')
-            f.write('\n')
+                mr_sites.add(site)
+        f.write(f'# Groups for {region}\n')
+        for site in sorted(mr_sites):
+            s_groups = site_groups(region, sheet_list, site)
+            for group in s_groups:
+                f.write(f'{group["name"]}\n')
+                for member in group['members']:
+                    f.write(f'{member}\n')
+                f.write('\n')
         for srv_type in base_srv_types:
-            group = mr_groups(region, srv_type)
+            group = mr_groups(region, srv_type, mr_sites)
             f.write(group['name'] + '\n')
             for member in group['members']:
                 f.write(member + '\n')
