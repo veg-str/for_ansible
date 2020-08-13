@@ -137,4 +137,5 @@ with open(inventory_file, 'w', newline='\n') as f:
         for member in group['members']:
             f.write(member + '\n')
         f.write('\n')
+    wb.close()
     print('Done')
