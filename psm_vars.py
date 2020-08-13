@@ -1,29 +1,33 @@
-import openpyxl, yaml, re
+import openpyxl
+import yaml
+import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.01.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
 vars_dir = 'c:\\temp\\host_vars\\'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['nin']
-#mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
-quorum = '1'
+mr = ['MOS']
+#mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
+quorum = 1
 
 
-def rb_vip():
-    rb_vip = {}
-    for region in mr:
-        rb_reg = {}
-        ws = wb[region.upper()]
-        for row in ws.iter_rows():
-            if re.search("^rb\d\d.*\(VRRP VIP\)", str(row[1].value)) and row[3].value == 'Radius':
-                rb_reg[re.search("^rb\d\d\." + region, str(row[1].value)).group(0)] = row[5].value
-        rb_vip[region] = rb_reg
-    return rb_vip
+def get_sheets_list(region):
+    ws_list = list(filter(lambda i: re.search('^'+region, i), wb.sheetnames))
+    return ws_list
 
 
-def prefix(mr, vlan):
+def get_rb_vips(sheet):
+    rb_vips = {}
+    ws = wb[sheet.upper()]
+    for row in ws.iter_rows():
+        if re.search("^rb\d\d.*\(VRRP VIP\)", str(row[1].value)) and row[3].value == 'Radius':
+            rb_vips[re.search("^rb\d{2}", str(row[1].value)).group(0) + '_vip'] = row[5].value
+    return rb_vips
+
+
+def get_prefix(sheet, vlan):
     prefix = ''
     net = wb.defined_names[mr + '_nets'].attr_text
     ws = wb[str(net[1:net.find('!') - 1])]
@@ -34,63 +38,55 @@ def prefix(mr, vlan):
     return prefix
 
 
-def psm_list(mr):
-    ws = wb[mr.upper()]
-    psms = []
+def get_psm_list(sheet):
+    ws = wb[sheet.upper()]
+    psm_rows = []
     for row in ws.iter_rows():
-        if row[3].value == 'vm_Mgmt' and re.search("^psm", row[1].value):
-            psms.append(row[1].value)
-    return psms
+        if re.search("^psm[0-9]+", str(row[1].value)):
+            psm_rows.append({
+                'vm_name': row[1].value,
+                'vlan': row[3].value,
+                'ip': row[5].value
+                })
+    return psm_rows
 
 
-def psm_vars(mr, psm):
-    ws = wb[mr.upper()]
+def get_psm_vars(curr_srv, srv_list):
+    global quorum
     ha = {}
+    ha['cluster_id'] = int(re.search('\d{1,2}', curr_srv['vm_name']).group(0))
+    ha['quorum'] = quorum
+    ha['vip'] = {}
     vars = {}
-    for row in ws.iter_rows():
-        if row[1].value == psm:
-            vars[re.search("^\D{1,20}", str(row[3].value)).group(0)] = row[5].value + prefix(mr, row[3].value)
-    ha['cluster_id'] = psm[4]
-    for row in ws.iter_rows():
-        if row[1].value == psm[:-14] + ' (VRRP VIP)':
-            ha[re.search("^\D{1,20}", str(row[3].value)).group(0) + '_vip'] = row[5].value + prefix(mr, row[3].value)
-    vars['ha'] = ha
-    psm_vars = {psm[:-13]: vars}
+    vars['cluster'] = {}
+    vars['net'] = {}
+    for srv in srv_list:
+        if srv['vm_name'] == curr_srv['vm_name'] and srv['vlan'] != 'vm_Mgmt':
+            vars['net'][re.search("^\D{1,20}", srv['vlan']).group(0).lower() + '_ip'] = srv['ip']
+        elif srv['vm_name'] == curr_srv['vm_name'][:-14] + ' (VRRP VIP)':
+            ha['vip'][re.search("^\D{1,20}", srv['vlan']).group(0).lower() + '_vip'] = srv['ip']
+    vars['cluster']['ha'] = ha
+    psm_vars = {curr_srv['vm_name'][:-13]: vars}
     return psm_vars
 
 
-rb = rb_vip()
-for item in mr:
-    psms = psm_list(item)
-#    print(psms)
-    for psm in psms:
-        vars = psm_vars(item, psm)
-#        print(vars)
-        var_file = vars_dir + psm[:10] + '.yml'
-        with open(var_file, 'w', newline='\n') as f:
-            f.write('# Variables for ' + psm + '\n#\n')
-            f.write('# High availability related vars\n#\n')
-            f.write('ha:\n')
-            f.write('  cluster_id: ' + vars[psm[:-13]]['ha']['cluster_id'] + '\n')
-            f.write('  quorum: ' + quorum + '\n')
-            f.write('  elector: ' + '\n')
-            f.write('  vip:\n')
-            f.write('    gx_vip: ' + vars[psm[:-13]]['ha']['Gx_vip'] + '\n')
-            f.write('    gy_vip: ' + vars[psm[:-13]]['ha']['Gy_vip'] + '\n')
-            f.write('    aaa_vip: ' + vars[psm[:-13]]['ha']['Radius_vip'] + '\n')
-            f.write('    res_vip: ' + vars[psm[:-13]]['ha']['Resource_vip'] + '\n')
-            f.write('#\n' + '# NICs related vars\n#\n')
-            f.write('gx_ip: ' + vars[psm[:-13]]['Gx'] + '\n')
-            f.write('gy_ip: ' + vars[psm[:-13]]['Gy'] + '\n')
-            f.write('aaa_ip: ' + vars[psm[:-13]]['Radius'] + '\n')
-            f.write('res_ip: ' + vars[psm[:-13]]['Resource'] + '\n')
-            f.write('provisioning_ip: ' + vars[psm[:-13]]['Provisioning'] + '\n')
-            f.write('cluster_sync_ip: ' + vars[psm[:-13]]['ClusterSync'] + '\n')
-            f.write('#\n' + '# Other vars\n#\n')
-#            if int(psm[3:5])%2 != 0:
-            f.write('rb01_vip: ' + rb[item]['rb01.' + item] + '\n')
-#            else:
-            f.write('rb02_vip: ' + rb[item]['rb02.' + item] + '\n')
-#            print(vars)
-
-print(yaml.dump(vars[list(vars.keys())[0]]))
+for region in mr:
+    print(f'Collecting data about PSMs in {region}')
+    sheet_list = get_sheets_list(region)
+    for sheet in sheet_list:
+        psm_list = get_psm_list(sheet)
+        rb = get_rb_vips(sheet)
+        for psm in list(filter(lambda i: not re.search('\(VRRP VIP\)', i['vm_name']), psm_list)):
+            vars = get_psm_vars(psm, psm_list)
+            var_file = f'{vars_dir}{psm["vm_name"][:10]}.yml'
+            with open(var_file, 'w', newline='\n') as f:
+                f.write(f'# Variables for {psm["vm_name"]}\n#\n')
+                f.write('# High availability related vars\n#\n')
+                f.write(yaml.dump(vars[psm['vm_name'][:-13]]['cluster']))
+            with open(var_file, 'a', newline='\n') as f:
+                f.write('#\n' + '# NICs related vars\n#\n')
+                f.write(yaml.dump(vars[psm['vm_name'][:-13]]['net']))
+            with open(var_file, 'a', newline='\n') as f:
+                f.write('#\n' + '# Other vars\n#\n')
+                f.write(yaml.dump(rb))
+print('Done')
