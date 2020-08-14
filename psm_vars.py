@@ -27,15 +27,30 @@ def get_rb_vips(sheet):
     return rb_vips
 
 
-def get_prefix(sheet, vlan):
-    prefix = ''
-    net = wb.defined_names[mr + '_nets'].attr_text
+def get_vlans():
+    vlans = []
+    ws = wb['Dictionary']
+    i = 2
+    cell = 'D' + str(i)
+    while ws[cell].value:
+        if 'FlowControl' not in ws[cell].value:
+            vlans.append(ws[cell].value)
+        i = i + 1
+        cell = 'D' + str(i)
+    return vlans
+
+
+def get_prefix_list(sheet):
+    vlan_list = get_vlans()
+    prefixes = {}
+    wsid = wb.sheetnames.index('IP-plan')
+    net = wb.defined_names.get(sheet.lower(), wsid).attr_text
     ws = wb[str(net[1:net.find('!') - 1])]
     rng = net[net.find('!') + 1:]
     for row in ws.iter_rows():
-        if row[0].value == vlan:
-            prefix = row[3].value
-    return prefix
+        if row[0].value in vlan_list:
+            prefixes[row[0].value] = row[3].value
+    return prefixes
 
 
 def get_psm_list(sheet):
@@ -53,6 +68,7 @@ def get_psm_list(sheet):
 
 def get_psm_vars(curr_srv, srv_list):
     global quorum
+    global prefix_list
     ha = {}
     ha['cluster_id'] = int(re.search('\d{1,2}', curr_srv['vm_name']).group(0))
     ha['quorum'] = quorum
@@ -64,7 +80,7 @@ def get_psm_vars(curr_srv, srv_list):
         if srv['vm_name'] == curr_srv['vm_name'] and srv['vlan'] != 'vm_Mgmt':
             vars['net'][re.search("^\D{1,20}", srv['vlan']).group(0).lower() + '_ip'] = srv['ip']
         elif srv['vm_name'] == curr_srv['vm_name'][:-14] + ' (VRRP VIP)':
-            ha['vip'][re.search("^\D{1,20}", srv['vlan']).group(0).lower() + '_vip'] = srv['ip']
+            ha['vip'][re.search("^\D{1,20}", srv['vlan']).group(0).lower() + '_vip'] = f"{srv['ip']}{prefix_list[srv['vlan']]}"
     vars['cluster']['ha'] = ha
     psm_vars = {curr_srv['vm_name'][:-13]: vars}
     return psm_vars
@@ -76,6 +92,7 @@ for region in mr:
     for sheet in sheet_list:
         psm_list = get_psm_list(sheet)
         rb = get_rb_vips(sheet)
+        prefix_list = get_prefix_list(sheet)
         for psm in list(filter(lambda i: not re.search('\(VRRP VIP\)', i['vm_name']), psm_list)):
             vars = get_psm_vars(psm, psm_list)
             var_file = f'{vars_dir}{psm["vm_name"][:10]}.yml'

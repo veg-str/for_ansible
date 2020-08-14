@@ -115,6 +115,8 @@ with open(inventory_file, 'w', newline='\n') as f:
                 for member in group['members']:
                     f.write(f'{member}\n')
                 f.write('\n')
+                f.write(f'{group["name"][:-9]}vars]\n')
+                f.write(f'dom_num={dom_num}\n\n')
                 mr_sites.add(site)
         f.write(f'# Groups for {region}\n')
         for site in sorted(mr_sites):
