@@ -37,12 +37,27 @@ def filter_vm_only(src):
     return res
 
 
-def check_srv_type(src):
-    print(src)
+def check_psm(src):
     res = False
     if src['vm'] is not None:
         res = re.search('^psm', src['vm'])
     return res
+
+
+def check_pre(src):
+    res = False
+    if src['vm'] is not None:
+        res = re.search('^pre', src['vm'])
+    return res
+
+
+def get_psm_vip(srv, s_list):
+    psm_vip = {}
+    for s in s_list:
+        if re.search(srv + ".*\(VRRP VIP\)", s['vm']):
+            vlan = re.search('\D*', s['vlan']).group(0)
+            psm_vip[vlan] = s['ip']
+    return psm_vip
 
 
 def get_sw_list(sheet, dom_num):

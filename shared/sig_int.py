@@ -32,3 +32,29 @@ def get_gy_peers(w_sheet):
                      "watchdogTimeoutMs": 30000
                      })
     return gy_peers
+
+
+def get_radius_secret(w_sheet):
+    ws = wb[w_sheet]
+    rad_secret = ws['M6'].value
+    return rad_secret
+
+
+def get_gx_peers(w_sheet, p_type):
+    ws = wb[w_sheet]
+    name = [None, 'odd', 'even']
+    pcrfs = {}
+    for i in 1,2:
+        gx = wb.defined_names[f'{w_sheet.lower()}_s{i}_gx'].attr_text
+        rng = gx[gx.find('!') + 1:]
+        pcrfs_list = []
+        for row in ws[rng]:
+            if row[-1].value == p_type:
+                pcrfs_list.append({
+                    'primIP': row[9].value,
+                    'secIP': row[10].value,
+                    'hostName': row[13].value,
+                    'realm': row[14].value
+                })
+        pcrfs[name[i]] = pcrfs_list
+    return pcrfs

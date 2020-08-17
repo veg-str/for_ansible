@@ -25,12 +25,15 @@ $PCRF-BUFFER-SIZE 16000000
 $MAX-CONNECTED-PCRFS 2
 $LOAD-BALANCE 0
 
-{% for peer in peer_list %}
-$PCRF-ADDRESS {% if peer.primIP %}{{ peer.primIP }}{% else %}{{ peer.secIP }}{% endif %}
+$PCRF-ADDRESS {{ primPCRF.IP }}
 $PSM-BIND-ADDRESS {{ gxVIP }}
-$DESTINATION-HOST {{ peer.hostName }}.{{ peer.realm }}
-$DESTINATION-REALM {{ peer.realm }}
-{% endfor %}
+$DESTINATION-HOST {{ primPCRF.hostName }}.{{ primPCRF.realm }}
+$DESTINATION-REALM {{ primPCRF.realm }}
+
+$PCRF-ADDRESS {{ secPCRF.IP }}
+$PSM-BIND-ADDRESS {{ gxVIP }}
+$DESTINATION-HOST {{ secPCRF.hostName }}.{{ secPCRF.realm }}
+$DESTINATION-REALM {{ secPCRF.realm }}
 
 $SESSION-FLUSH-ENABLED 1
 #$ATTR-SESSION-FLUSH: References a field in the Model holding a timestamp. The timestamp should be used by a time
