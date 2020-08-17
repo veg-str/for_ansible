@@ -4,18 +4,19 @@ import re
 import jinja2
 import datetime
 from pprint import pprint
+from shared import ip_plan, sig_int
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.02.xlsx'
+file_ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
 conf_template = 'project_files\\psm_config_template.json'
-sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.4.xlsx'
+file_sig_int = 'project_files\\Tele2_TMS_Signal_integration_v3.5.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader('project_files')
 )
 
-mr = ['EKT', 'NIN', 'NSK']
-# mr = ['NIN']
+mr = ['MOS']
+# mr = ['EKT', 'NIN', 'NSK', 'MOS']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'
@@ -31,10 +32,10 @@ def prepare_template(source):
     source['components'] = new_list
     return source
 
-
+'''
 def psm_list(region):
     psm_list = {}
-    wb = openpyxl.load_workbook(ip_plan, True)
+    wb = openpyxl.load_workbook(file_ip_plan, True)
     ws = wb[region]
     for row in ws.iter_rows():
         if re.search("^psm\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'vm_Mgmt':
@@ -46,11 +47,11 @@ def psm_list(region):
                 psm_ips[row[3].value] = row[5].value
         psm_list[psm] = psm_ips
     return psm_list
-
+'''
 
 def get_pre_list(region):
     pre_list = []
-    wb = openpyxl.load_workbook(ip_plan, True)
+    wb = openpyxl.load_workbook(file_ip_plan, True)
     ws = wb[region]
     for row in ws.iter_rows():
         if re.search("^pre\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'Provisioning':
@@ -60,7 +61,7 @@ def get_pre_list(region):
 
 def cluster_list(region):
     cluster_list = []
-    wb = openpyxl.load_workbook(ip_plan, True)
+    wb = openpyxl.load_workbook(file_ip_plan, True)
     ws = wb[region]
     for row in ws.iter_rows():
         if re.search("^psm\d\d\." + region.lower() + ".*\(VRRP VIP\)", str(row[1].value)) and row[3].value == 'Radius':
@@ -69,7 +70,7 @@ def cluster_list(region):
 
 
 def get_psm_vip(srv):
-    wb = openpyxl.load_workbook(ip_plan, True)
+    wb = openpyxl.load_workbook(file_ip_plan, True)
     ws = wb[region]
     psm_vip = {}
     for row in ws.iter_rows():
@@ -79,14 +80,14 @@ def get_psm_vip(srv):
 
 
 def get_radius_secret(region):
-    wb = openpyxl.load_workbook(sig_int, True)
+    wb = openpyxl.load_workbook(file_sig_int, True)
     ws = wb[region]
     radius_secret = ws['M6'].value
     return radius_secret
 
 
 def get_gy_peers(mr):
-    wb = openpyxl.load_workbook(sig_int, True)
+    wb = openpyxl.load_workbook(file_sig_int, True)
     s1_gy = wb.defined_names[mr.lower() + '_s1_gy'].attr_text
     ws = wb[mr]
     rng = s1_gy[s1_gy.find('!') + 1:]
@@ -110,7 +111,7 @@ def get_gy_peers(mr):
 
 
 def get_local_gx_config(srv, region):
-    wb = openpyxl.load_workbook(sig_int, True)
+    wb = openpyxl.load_workbook(file_sig_int, True)
     ws = wb[region]
     s1_gx = wb.defined_names[region.lower() + '_s1_gx'].attr_text
     s2_gx = wb.defined_names[region.lower() + '_s2_gx'].attr_text
@@ -142,7 +143,7 @@ def get_local_gx_config(srv, region):
 
 
 def get_remote_gx_config(srv, region):
-    wb = openpyxl.load_workbook(sig_int, True)
+    wb = openpyxl.load_workbook(file_sig_int, True)
     ws = wb[region]
     s1_gx = wb.defined_names[region.lower() + '_s1_gx'].attr_text
     s2_gx = wb.defined_names[region.lower() + '_s2_gx'].attr_text
@@ -226,6 +227,15 @@ def set_psm_provisionerng_host(pre):
 
 
 for region in mr:
+    sheet_list = ip_plan.get_sheets_list(region)
+    for sheet in sheet_list:
+        full_srv_list = ip_plan.rows_to_dict(sheet)
+        gy_peers = sig_int.get_gy_peers(sheet)
+        srv_type = 'psm'
+        psm_list = list(filter(ip_plan.check_srv_type, full_srv_list))
+        pprint(psm_list)
+
+    '''
     srv_list = cluster_list(region)
     pprint(srv_list)
     virtual_ips = {}
@@ -279,4 +289,4 @@ for region in mr:
             new_config_file = new_conf_path + srv.replace('.', '_') + '_' + str(
                 datetime.datetime.today().isoformat(sep='_', timespec='minutes')).replace(':', '_') + '.json'
             with open(new_config_file, 'w', newline='\n') as new_cfg:
-                json.dump(config_source, new_cfg)
+                json.dump(config_source, new_cfg)'''

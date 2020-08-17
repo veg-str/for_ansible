@@ -37,6 +37,14 @@ def filter_vm_only(src):
     return res
 
 
+def check_srv_type(src):
+    print(src)
+    res = False
+    if src['vm'] is not None:
+        res = re.search('^psm', src['vm'])
+    return res
+
+
 def get_sw_list(sheet, dom_num):
     wsid = wb.sheetnames.index('IP-plan')
     net = wb.defined_names.get(sheet.lower(), wsid).attr_text
