@@ -8,7 +8,7 @@ vars_file = 'c:\\temp\\group_vars\\networks.yml'
 wb = openpyxl.load_workbook(ip_plan, True)
 ws_id = wb.sheetnames.index('IP-plan')
 
-mr = ['MOS']
+mr = ['MOS', 'NIN', 'EKT', 'NSK']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 reg = {}
 subnets = {}
@@ -67,6 +67,6 @@ with open(vars_file, 'w', newline='\n') as f:
                         if row[0].value in vlans:
                             site[row[0].value] = {'subnet': row[8].value, 'prefix': row[3].value, 'gw': row[9].value}
                 reg[f'{region.lower()}{str(i)}_d{dom_num}'] = site
-    subnets['network'] = reg
+    subnets['networks'] = reg
     f.write(yaml.dump(subnets))
     print('Done')

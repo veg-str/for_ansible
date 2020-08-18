@@ -101,7 +101,7 @@ with open(inventory_file, 'w', newline='\n') as f:
                         vm_list = get_vm_names(host, kvm_list)
                         if host['site'] == site and re.search("^" + type, vm_list[0]):
                             f.write(f'{host["hostname"][:-13]} ansible_host={host["ip"]} '
-                                    f'vm_name={vm_list[0]} vm_list={vm_list}\n')
+                                    f'vm_name={vm_list[0]} vm_list="{vm_list}"\n')
                     f.write('\n')
                 for type in ext_srv_types:
                     f.write(f'[kvm_{region.lower()}{site[-1]}_d{dom_num}_{type}]\n')

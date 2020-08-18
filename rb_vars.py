@@ -8,7 +8,7 @@ vars_dir = 'c:\\temp\\host_vars\\'
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['MOS']
+mr = ['MOS', 'NIN', 'EKT', 'NSK']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 
 

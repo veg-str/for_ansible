@@ -11,6 +11,8 @@ conf_template = 'project_files\\psm_config_template.json'
 file_sig_int = 'project_files\\Tele2_TMS_Signal_integration_v4.5-draft.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
+now = str(datetime.datetime.today().isoformat(sep="_", timespec="minutes")).replace(":", "_")
+
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader('project_files')
 )
@@ -32,32 +34,6 @@ def prepare_template(source):
     source['components'] = new_list
     return source
 
-'''
-def psm_list(region):
-    psm_list = {}
-    wb = openpyxl.load_workbook(file_ip_plan, True)
-    ws = wb[region]
-    for row in ws.iter_rows():
-        if re.search("^psm\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'vm_Mgmt':
-            psm_list[row[1].value] = {'Site': row[6].value}
-    for psm in psm_list.keys():
-        psm_ips = {}
-        for row in ws.iter_rows():
-            if row[1].value == psm:
-                psm_ips[row[3].value] = row[5].value
-        psm_list[psm] = psm_ips
-    return psm_list
-
-
-def get_pre_list(region):
-    pre_list = []
-    wb = openpyxl.load_workbook(file_ip_plan, True)
-    ws = wb[region]
-    for row in ws.iter_rows():
-        if re.search("^pre\d\d\." + region.lower() + "\d.*", str(row[1].value)) and row[3].value == 'Provisioning':
-            pre_list.append(row[5].value)
-    return pre_list
-'''
 
 def get_cluster_list(srvs):
     cluster_list = []
@@ -102,7 +78,7 @@ def get_gy_peers(mr):
                      "hostName": "10.78.245.57",
                      "port": 3878,
                      "bindAddress": None,
-                     "enabled": False, #True,
+                     "enabled": False,  # True,
                      "watchdogTimeoutMs": 30000
                      })
     return gy_peers
@@ -188,15 +164,15 @@ for region in mr:
         gx_peers_dra = sig_int.get_gx_peers(sheet, 'dra')
         gy_peers = sig_int.get_gy_peers(sheet)
         radius_secret = sig_int.get_radius_secret(sheet)
-#        pprint(radius_secret)
+        #        pprint(radius_secret)
         cl_list = get_cluster_list(psm_list)
-#        pprint(psm_list)
+        #        pprint(psm_list)
         with open(conf_template, "r", newline='\n') as file:
             config_template = json.load(file)
             for srv in cl_list:
                 config_source = prepare_template(config_template)
                 psm_vip = ip_plan.get_psm_vip(srv, psm_list)
-#                pprint(psm_vip)
+                #                pprint(psm_vip)
                 # **** Editing different component parameters ****
                 components = config_source['components']
                 for component in components:
@@ -235,7 +211,6 @@ for region in mr:
                 for pre in provisioner:
                     components.append(pre)
                 # **** Writing new config to JSON file ****
-                new_config_file = new_conf_path + srv.replace('.', '_') + '_' + str(
-                    datetime.datetime.today().isoformat(sep='_', timespec='minutes')).replace(':', '_') + '.json'
+                new_config_file = f'{new_conf_path}{srv.replace(".", "_")}_{now}.json'
                 with open(new_config_file, 'w', newline='\n') as new_cfg:
                     json.dump(config_source, new_cfg)
