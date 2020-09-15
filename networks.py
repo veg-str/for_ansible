@@ -2,8 +2,8 @@ import openpyxl
 import yaml
 import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
-vars_file = 'c:\\temp\\group_vars\\networks.yml'
+ip_plan = 'project_files/Tele2_IP_plan_v3.00.xlsx'
+vars_file = 'c:/temp/group_vars/networks.yml'
 
 wb = openpyxl.load_workbook(ip_plan, True)
 ws_id = wb.sheetnames.index('IP-plan')

@@ -1,13 +1,19 @@
 import openpyxl
 import re
 
-file_sig_int = 'project_files\\Tele2_TMS_Signal_integration_v4.5-draft.xlsx'
+file_sig_int = 'project_files/Tele2_TMS_Signal_integration_v5.2.xlsx'
 wb = openpyxl.load_workbook(file_sig_int, True)
 
 
 def get_sheets_list(region):
-    ws_list = list(filter(lambda i: re.search('^'+region, i), wb.sheetnames))
+    ws_list = list(filter(lambda i: re.search('^'+region.upper(), i), wb.sheetnames))
     return ws_list
+
+
+def get_named_ranges(work_sheet):
+    nr = wb.get_named_ranges()
+    named_ranges = list(filter(lambda i: re.search('^'+work_sheet.lower(), i.name), nr))
+    return named_ranges
 
 
 def get_gy_peers(w_sheet):

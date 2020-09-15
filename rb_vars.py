@@ -2,8 +2,8 @@ import openpyxl
 import yaml
 import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
-vars_dir = 'c:\\temp\\host_vars\\'
+ip_plan = 'project_files/Tele2_IP_plan_v3.01.xlsx'
+vars_dir = 'c:/temp/host_vars/'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
@@ -25,7 +25,8 @@ def get_rb_list(sheet):
             rb_rows.append({
                 'vm_name': row[1].value,
                 'vlan': row[3].value,
-                'ip': row[5].value
+                'ip': row[5].value,
+                'site': row[6].value
                 })
     return rb_rows
 
@@ -36,14 +37,16 @@ def get_rb_vars(rb, rb_list):
     vars['ha'] = {}
     vars['ha']['vip'] = {}
     for srv in rb_list:
-        if srv['vm_name'] == rb and srv['vlan'] == 'Radius':
-            vars['net']['radius_ip'] = srv['ip']
-        elif srv['vm_name'] == rb and srv['vlan'] == 'RadiusFE':
-            vars['net']['radiusfe_ip'] = srv['ip']
-        elif re.search(rb[:8] + ' \(VRRP VIP\)', srv['vm_name']) and srv['vlan'] == 'Radius':
-            vars['ha']['vip']['radius_vip'] = srv['ip']
-        elif re.search(rb[:8] + ' \(VRRP VIP\)', srv['vm_name']) and srv['vlan'] == 'RadiusFE':
-            vars['ha']['vip']['radiusfe_vip'] = srv['ip']
+        if srv['vm_name'] == rb['vm_name']:
+            if srv['vlan'] == 'Radius':
+                vars['net']['radius_ip'] = srv['ip']
+            elif srv['vlan'] == 'RadiusFE':
+                vars['net']['radiusfe_ip'] = srv['ip']
+        if re.search(' \(VRRP VIP\)', srv['vm_name']) and srv['site'] == rb['site']:
+            if srv['vlan'] == 'Radius':
+                vars['ha']['vip']['radius_vip'] = srv['ip']
+            elif srv['vlan'] == 'RadiusFE':
+                vars['ha']['vip']['radiusfe_vip'] = srv['ip']
     return vars
 
 
@@ -54,14 +57,14 @@ for region in mr:
         rb_list = get_rb_list(sheet)
         for rb in rb_list:
             if rb['vlan'] == 'vm_Mgmt':
-                rb_vars = get_rb_vars(rb['vm_name'], rb_list)
-            var_file = f'{vars_dir}{rb["vm_name"][:9]}.yml'
-            with open(var_file, 'w', newline='\n') as f:
-                f.write(f'# Variables for {rb["vm_name"]}\n#\n')
-                f.write('# High availability related vars\n#\n')
-                f.write(yaml.dump(rb_vars['ha']))
-            with open(var_file, 'a', newline='\n') as f:
-                f.write('#\n' + '# NICs related vars\n#\n')
-                f.write(yaml.dump(rb_vars['net']))
+                rb_vars = get_rb_vars(rb, rb_list)
+                var_file = f'{vars_dir}{rb["vm_name"][:9]}.yml'
+                with open(var_file, 'w', newline='\n') as f:
+                    f.write(f'# Variables for {rb["vm_name"]}\n#\n')
+                    f.write('# High availability related vars\n#\n')
+                    f.write(yaml.dump(rb_vars['ha']))
+                with open(var_file, 'a', newline='\n') as f:
+                    f.write('#\n' + '# NICs related vars\n#\n')
+                    f.write(yaml.dump(rb_vars['net']))
 wb.close()
 print('Done')

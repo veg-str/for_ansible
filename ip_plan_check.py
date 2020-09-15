@@ -2,7 +2,7 @@ import openpyxl
 import ipaddress
 import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v3.01.xlsx'
 #mr = ['mos']
 mr = ['spb', 'mos', 'nin', 'ekt', 'nsk']
 check_results = {}

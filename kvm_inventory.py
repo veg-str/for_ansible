@@ -1,8 +1,8 @@
 import openpyxl
 import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
-inventory_file = 'c:\\temp\\inventory\\kvm'
+ip_plan = 'project_files/Tele2_IP_plan_v3.01.xlsx'
+inventory_file = 'c:/temp/inventory/kvm'
 
 mr = ['MOS', 'NIN', 'EKT', 'NSK']
 # mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
