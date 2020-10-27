@@ -1,11 +1,11 @@
 import openpyxl
 import re
 
-ip_plan_file = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
+file_ip_plan = 'project_files\\Tele2_IP_plan_v3.03.xlsx'
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 
-wb = openpyxl.load_workbook(ip_plan_file, True)
+wb = openpyxl.load_workbook(file_ip_plan, True)
 
 
 def get_sheets_list(region):
@@ -35,6 +35,11 @@ def filter_host_only(src):
 def filter_vm_only(src):
     res = src['vlan'] == 'vm_Mgmt'
     return res
+
+
+def filter_by_vlan(vlan, src_list):
+    filtered_rows = list(filter(lambda i: i['vlan'] == vlan, src_list))
+    return filtered_rows
 
 
 def check_psm(src):

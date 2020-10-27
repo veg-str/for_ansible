@@ -1,10 +1,10 @@
 import openpyxl
 import re
 
-ip_plan = 'project_files/Tele2_IP_plan_v3.01.xlsx'
+ip_plan = 'project_files/Tele2_IP_plan_v3.02.xlsx'
 inventory_file = 'c:/temp/inventory/packetlogick'
 
-mr = ['MOS', 'NIN', 'EKT', 'NSK']
+mr = ['SPB', 'MOS', 'NIN', 'EKT', 'NSK']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']

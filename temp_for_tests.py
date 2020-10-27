@@ -1,9 +1,13 @@
 import re
+import os
+from ncclient import *
 
 from pprint import pprint
 
 
 
+a = (lambda x: x*(x+1)) (6)
+print(a)
 '''
 # Get list of MSISDNs from file
 msisdns = []

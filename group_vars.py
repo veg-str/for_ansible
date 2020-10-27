@@ -4,8 +4,9 @@ import ipaddress
 import copy
 import os
 import re
+from shared import sig_int
 
-sig_int_file = 'project_files/Tele2_TMS_Signal_integration_v5.2.xlsx'
+sig_int_file = 'project_files/Tele2_TMS_Signal_integration_v5.5.xlsx'
 vars_dir = 'c:/temp/group_vars/'
 
 # Open Excel file in read-only mode
@@ -21,22 +22,6 @@ def make_var_dirs(dir_name):
         os.mkdir(vars_dir + dir_name)
     dir = f'{vars_dir}{dir_name}'
     return dir
-
-
-def get_sig_nets():
-    ranges = wb.defined_names.definedName
-    sig_nets = {}
-    for rng in ranges:
-        if re.match('^\D{3}_d\d_s\d_(radius|gx|gy)$', rng.name):
-            dests = wb.defined_names[rng.name].destinations
-            nets = []
-            for coord in dests:
-                ws = wb[coord[0]]
-                for row in ws[coord[1]]:
-                    if row[-2].value:
-                        nets.append(row[-2].value.strip())
-            sig_nets[rng.name] = nets
-    return sig_nets
 
 
 def filter_net_list(wsheet, sig, nets):
@@ -150,7 +135,7 @@ def get_epsm_static_routes(nets):
     return s_routes
 
 # Getting Signal Interation subnets
-signal_networks = get_sig_nets()
+signal_networks = sig_int.get_sig_nets()
 
 #  Get summarized subnets
 sum_networks = copy.deepcopy(signal_networks)
@@ -162,7 +147,7 @@ for key in keys:
 
 # Creates PSM group vars files with static routes
 for region in mr:
-    wsheets = list(filter(lambda i: re.match(region, i, re.I), wb.sheetnames))
+    wsheets = sig_int.get_sheets_list(region)
     for ws in wsheets:
         psm_sr = []
         for sig in sigs:

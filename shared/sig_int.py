@@ -1,7 +1,7 @@
 import openpyxl
 import re
 
-file_sig_int = 'project_files/Tele2_TMS_Signal_integration_v5.2.xlsx'
+file_sig_int = 'project_files/Tele2_TMS_Signal_integration_v5.4.xlsx'
 wb = openpyxl.load_workbook(file_sig_int, True)
 
 
@@ -64,3 +64,19 @@ def get_gx_peers(w_sheet, p_type):
                 })
         pcrfs[name[i]] = pcrfs_list
     return pcrfs
+
+
+def get_sig_nets():
+    ranges = wb.defined_names.definedName
+    sig_nets = {}
+    for rng in ranges:
+        if re.match('^\D{3}_d\d_s\d_(radius|gx|gy)$', rng.name):
+            dests = wb.defined_names[rng.name].destinations
+            nets = []
+            for coord in dests:
+                ws = wb[coord[0]]
+                for row in ws[coord[1]]:
+                    if row[-2].value:
+                        nets.append(row[-2].value.strip())
+            sig_nets[rng.name] = nets
+    return sig_nets

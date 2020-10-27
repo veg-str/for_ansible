@@ -6,9 +6,7 @@ import datetime
 from pprint import pprint
 from shared import ip_plan, sig_int
 
-file_ip_plan = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
 conf_template = 'project_files\\psm_config_template.json'
-file_sig_int = 'project_files\\Tele2_TMS_Signal_integration_v4.5-draft.xlsx'
 new_conf_path = 'c:\\temp\\psm_conf\\'
 
 now = str(datetime.datetime.today().isoformat(sep="_", timespec="minutes")).replace(":", "_")
@@ -18,7 +16,7 @@ env = jinja2.Environment(
 )
 
 mr = ['MOS']
-# mr = ['EKT', 'NIN', 'NSK', 'MOS']
+#mr = ['EKT', 'NIN', 'NSK', 'MOS']
 
 defaultDestinationRealm = 'bercut'
 originRealm = 'node.epc.mnc020.mcc250.3gppnetwork.org'

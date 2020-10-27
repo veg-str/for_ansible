@@ -2,13 +2,13 @@ import openpyxl
 import yaml
 import re
 
-ip_plan = 'project_files/Tele2_IP_plan_v3.00.xlsx'
+ip_plan = 'project_files/Tele2_IP_plan_v3.02.xlsx'
 vars_dir = 'c:/temp/host_vars/'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(ip_plan, True)
 
-mr = ['MOS', 'NIN', 'EKT', 'NSK']
+mr = ['SPB', 'MOS', 'NIN', 'EKT', 'NSK']
 #mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 quorum = 1
 

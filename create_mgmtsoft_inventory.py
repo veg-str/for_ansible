@@ -9,17 +9,13 @@ mr = ['MOS','EKT', 'NIN', 'NSK']
 # mr = ['MOS','EKT', 'NIN', 'NSK', 'SPB', 'ROS']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
-ip_plan_file = 'project_files\\Tele2_IP_plan_v2.04-draft.xlsx'
+ip_plan_file = 'project_files\\Tele2_IP_plan_v3.02.xlsx'
 wb = openpyxl.load_workbook(ip_plan_file, True)
 
 f_dir = 'c:\\temp\\mgmt_soft\\'
 
 
 def create_superputty_inv(root):
-    global host_list
-    global vm_list
-    global sw_list
-    global dom_num
     attr = {}
     for sw in sw_list:
         attr['SessionId'] = f'Tele2-TMS/{region.upper()}/Domain{dom_num}/{sw["swname"]}'
@@ -109,6 +105,6 @@ with open(filename, "wb") as file:
     tree.write(file, pretty_print=True, encoding="utf-8", xml_declaration=True)
 
 tree = xml.ElementTree(pl_root)
-filename = f'{f_dir}PLCient_{str(datetime.today().isoformat(sep="_", timespec="minutes")).replace(":", "_")}.xml'
+filename = f'{f_dir}PLCient_{str(datetime.today().isoformat(sep="_", timespec="minutes")).replace(":", "_")}.psx'
 with open(filename, "wb") as file:
     tree.write(file, pretty_print=True, encoding="utf-8", xml_declaration=True)
