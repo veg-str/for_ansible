@@ -1,12 +1,90 @@
 import openpyxl
 import re
+from shared.classes import PlServer, PsmCluster
 
-file_ip_plan = 'project_files\\Tele2_IP_plan_v3.03.xlsx'
+file_ip_plan = 'project_files/Tele2_IP_plan_v3.04_draft.xlsx'
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 
 wb = openpyxl.load_workbook(file_ip_plan, True)
 
+
+# New function with PlServer class usage
+
+def rows_to_list(ws):
+    full_srv_list = []
+    for row in ws.iter_rows():
+        full_srv_list.append({
+            'hostname': str(row[0].value),
+            'vm': str(row[1].value),
+            'vlan': str(re.search('^[^0-9]*', str(row[3].value)).group(0)),
+            'ip': str(row[5].value),
+            'site': str(row[6].value)
+        })
+    return full_srv_list
+
+
+def get_pl_list(region, domain=0):
+    pl_list = []
+    if domain == 0:
+        ws_list = get_sheets_list(region)
+    else:
+        ws_list = [region.upper()+'_D'+str(domain)]
+    for sheet in ws_list:
+        ws = wb[sheet]
+        srv_list = rows_to_list(ws)
+        dom_num = int(sheet[-1])
+        for srv in srv_list:
+            if re.search('^[^0-9]{3,4}', srv['vm']):
+                pl_type = re.search('^[^0-9]{3,4}', srv['vm']).group(0)
+            else:
+                pl_type = ''
+            if srv['vlan'] == 'vm_Mgmt' and pl_type in base_srv_types:
+                srv_ips = list(filter(lambda i: (i['vm'] == srv['vm'] and i['vlan'] != 'vm_Mgmt'), srv_list))
+                pl_ips = {}
+                for i in srv_ips:
+                    pl_ips[i['vlan']] = i['ip']
+                pl = PlServer(pl_type, srv['vm'], srv['ip'], region, srv['site'], dom_num, pl_ips)
+                pl_list.append(pl)
+    return pl_list
+
+
+def get_psm_clusters(region, domain):
+    clusters = []
+    psm_list = filter_by_type(get_pl_list(region, domain), 'psm')
+    psms = []
+    for psm in psm_list:
+        psms.append(psm.hostname[:-14])
+    psms = sorted(set(psms))
+    ws = wb[f'{region.upper()}_D{str(domain)}']
+    for psm in psms:
+        cl_name = psm
+        cl_id = int(re.search('[0-9]{2}', psm).group(0))
+        members = [f'{psm}1', f'{psm}2']
+        vip = {}
+        for row in ws.iter_rows():
+            if re.search(psm + ' \(VRRP VIP\)', str(row[1].value)):
+                vip[row[2].value] = row[5].value
+        clusters.append(PsmCluster(cl_name, cl_id, members, vip))
+    return clusters
+
+
+def filter_by_type(srv_list, pl_type):
+    filtered_list = list(filter(lambda i: i.pl_type == pl_type, srv_list))
+    return filtered_list
+
+
+def filter_by_site(srv_list, site):
+    filtered_list = list(filter(lambda i: i.site == site, srv_list))
+    return filtered_list
+
+
+def filter_by_domain(srv_list, domain):
+    filtered_list = list(filter(lambda i: i.domain == domain, srv_list))
+    return filtered_list
+
+
+# Old functions w/o classes
 
 def get_sheets_list(region):
     ws_list = list(filter(lambda i: re.search('^'+region, i), wb.sheetnames))

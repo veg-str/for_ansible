@@ -1,11 +1,11 @@
 import openpyxl
 import re
 
-ip_plan = 'project_files/Tele2_IP_plan_v3.02.xlsx'
+ip_plan = 'project_files/Tele2_IP_plan_v3.04_draft.xlsx'
 inventory_file = 'c:/temp/inventory/other'
 
-mr = ['SPB', 'MOS', 'NIN', 'EKT', 'NSK']
-#mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
+#mr = ['SPB', 'MOS', 'NIN', 'EKT', 'NSK']
+mr = ['SPB', 'MOS', 'ROS', 'NIN', 'EKT', 'NSK']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']
 
@@ -45,6 +45,14 @@ def get_rad_ip(srv, srv_list):
         if row['hostname'] == srv['hostname'] and row['vlan'] == 'Radius':
             rad_ip = row['ip']
     return rad_ip
+
+
+def get_df_ip(srv, srv_list):
+    df_ip = ''
+    for row in srv_list:
+        if row['hostname'] == srv['hostname'] and row['vlan'] == 'DataFeed':
+            df_ip = row['ip']
+    return df_ip
 
 
 def domain_groups(region, site):
@@ -106,6 +114,8 @@ with open(inventory_file, 'w', newline='\n') as f:
                             if type == 'epsm':
                                 f.write(f' provisioning_ip={get_prov_ip(row, srv_list)}')
                                 f.write(f' radius_ip={get_rad_ip(row, srv_list)}\n')
+                            elif type == 'rs':
+                                f.write(f' datafeed_ip={get_df_ip(row, srv_list)}\n')
                             else:
                                 f.write('\n')
                     f.write('\n')

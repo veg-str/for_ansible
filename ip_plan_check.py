@@ -2,9 +2,9 @@ import openpyxl
 import ipaddress
 import re
 
-ip_plan = 'project_files\\Tele2_IP_plan_v3.02.xlsx'
+ip_plan = 'project_files\\Tele2_IP_plan_v3.04_draft.xlsx'
 #mr = ['mos']
-mr = ['spb', 'mos', 'nin', 'ekt', 'nsk']
+mr = ['spb', 'mos', 'nin', 'ekt', 'nsk', 'ros']
 check_results = {}
 
 wb = openpyxl.load_workbook(ip_plan)
@@ -35,7 +35,7 @@ def get_vlans():
 def check_subnets(region, dn_list):
     global has_errors
     test_result = '\033[32mPASSED\033[30m'
-    print(f'Checking subnets in region {region.upper()}')
+    print(f'Checking subnets in region {region.upper()}... ', end =" ")
     for dn in dn_list:
         wsid = wb.sheetnames.index('IP-plan')
         net = wb.defined_names.get(dn, wsid).attr_text
@@ -56,13 +56,14 @@ def check_subnets(region, dn_list):
                     row[i].font = error_cell
                     test_result = '\033[31mFAILED\033[30m'
                     has_errors = True
+    print(test_result)
     return test_result
 
 
 def check_gw(region, dn_list):
     global has_errors
     test_result = '\033[32mPASSED\033[30m'
-    print(f'Checking gateways in region {region.upper()}')
+    print(f'Checking gateways in region {region.upper()}... ', end =" ")
     for dn in dn_list:
         wsid = wb.sheetnames.index('IP-plan')
         net = wb.defined_names.get(dn, wsid).attr_text
@@ -86,13 +87,14 @@ def check_gw(region, dn_list):
                 row[i].font = error_cell
                 test_result = '\033[31mFAILED\033[30m'
                 has_errors = True
+    print(test_result)
     return test_result
 
 
 def check_ip(region, vlan, dn_list):
     global has_errors
     test_result = '\033[32mPASSED\033[30m'
-    print(f'Checking IPs in VLAN {vlan} in region {region.upper()}')
+    print(f'Checking IPs in VLAN {vlan} in region {region.upper()}... ', end =" ")
     for dn in dn_list:
         dom = re.search("[0-9]+$", str(dn)).group(0)
         wsid = wb.sheetnames.index('IP-plan')
@@ -118,13 +120,14 @@ def check_ip(region, vlan, dn_list):
                     row[5].font = error_cell
                     test_result = '\033[31mFAILED\033[30m'
                     has_errors = True
+    print(test_result)
     return test_result
 
 
 def check_uniq_ip(region, vlan, dn_list):
     global has_errors
     test_result = '\033[32mPASSED\033[30m'
-    print(f'Checking for IPs uniq in VLAN {vlan} in region {region.upper()}')
+    print(f'Checking for IPs uniq in VLAN {vlan} in region {region.upper()}... ', end =" ")
     for dn in dn_list:
         dom = re.search("[0-9]+$", str(dn)).group(0)
         ws = wb[f'{region.upper()}_D{dom}']
@@ -136,6 +139,7 @@ def check_uniq_ip(region, vlan, dn_list):
         if len(addr) != len(addr_set):
             test_result = '\033[31mFAILED\033[30m'
             has_errors = True
+    print(test_result)
     return test_result
 
 
@@ -149,9 +153,9 @@ for region in mr:
             check_results['IP_' + vlan] = check_ip(region, vlan, dn)
         for vlan in vlans:
             check_results['Uniq_IP_' + vlan] = check_uniq_ip(region, vlan, dn)
-    print(f'Check results for {region.upper()}:' )
-    for test in check_results:
-        print(f'{test}: {check_results[test]}')
+#    print(f'Check results for {region.upper()}:' )
+#    for test in check_results:
+#        print(f'{test}: {check_results[test]}')
 
 if has_errors:
     print('\033[31mATTENTION!!! File has errors!\033[30m')

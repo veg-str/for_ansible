@@ -6,13 +6,14 @@ import os
 import re
 from shared import sig_int
 
-sig_int_file = 'project_files/Tele2_TMS_Signal_integration_v5.5.xlsx'
+sig_int_file = 'project_files/Tele2_TMS_Signal_integration_v5.7.xlsx'
 vars_dir = 'c:/temp/group_vars/'
 
 # Open Excel file in read-only mode
 wb = openpyxl.load_workbook(sig_int_file, True)
 
-mr = ['MOS', 'NIN', 'NSK', 'EKT']
+mr = ['SPB']
+#mr = ['MOS', 'NIN', 'NSK', 'EKT']
 #mr = ['spb', 'nin', 'ekt', 'nsk', 'ros', 'mos']
 #mr = ['nin', 'ekt', 'nsk', 'mos']
 sigs = ['radius', 'gx', 'gy']

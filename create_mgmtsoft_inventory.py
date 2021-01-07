@@ -5,7 +5,7 @@ from datetime import datetime
 import lxml.etree as xml
 from shared import ip_plan
 
-mr = ['MOS','EKT', 'NIN', 'NSK']
+mr = ['MOS','EKT', 'NIN', 'NSK', 'SPB']
 # mr = ['MOS','EKT', 'NIN', 'NSK', 'SPB', 'ROS']
 base_srv_types = ['pre', 'psm', 'pic', 'apic']
 ext_srv_types = ['epsm', 'rb', 'log', 'rs']

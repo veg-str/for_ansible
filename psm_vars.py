@@ -2,7 +2,7 @@ import openpyxl
 import yaml
 import re
 
-ip_plan = 'project_files/Tele2_IP_plan_v3.02.xlsx'
+ip_plan = 'project_files/Tele2_IP_plan_v3.04_draft.xlsx'
 vars_dir = 'c:/temp/host_vars/'
 
 # Open Excel file in read-only mode

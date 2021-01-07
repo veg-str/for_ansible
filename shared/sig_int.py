@@ -1,7 +1,7 @@
 import openpyxl
 import re
 
-file_sig_int = 'project_files/Tele2_TMS_Signal_integration_v5.4.xlsx'
+file_sig_int = 'project_files/Tele2_TMS_Signal_integration_v5.7.xlsx'
 wb = openpyxl.load_workbook(file_sig_int, True)
 
 
